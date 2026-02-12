@@ -1,0 +1,3 @@
+;{{$labos->id}}/{{$labos->labo}};
+
+

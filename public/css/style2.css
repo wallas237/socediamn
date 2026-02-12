@@ -1,0 +1,157 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+header{
+    background-color: #c0bbbbd5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    
+    
+}
+
+header .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    /*background-color: rgb(30, 4, 4);*/
+    background-color: whitesmoke;
+    margin: 0;
+    padding: 0;
+   
+    
+}
+
+header .container > div{
+    padding: 0;
+    margin: 0;
+}
+
+header .container .item{
+    flex: 2;
+    margin: 0;
+    padding: 0;
+   
+}
+
+header .container .item img{
+    height: 97vh;
+    width: 100%;
+    
+}
+
+header .container .item-2{
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 50px;
+    font-family: 'Poppins', sans-serif;
+}
+
+header .container .item-2 .titre h1{
+    width: 100%;
+    text-align: center;
+    font-weight: bolder;
+    padding-bottom: 15px;
+}
+
+header .container .item-2 .theme{
+    width: 100%;
+    text-align: center;
+    padding: 15px 0px;
+    background-color: rgb(1, 87, 74);
+}
+
+header .container .item-2 .theme h2{
+    color: lightgray;
+    font-weight: bold;
+}
+
+header .container .item-2 .libelle{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    /*flex-direction: column;
+    gap: 20px;*/
+}
+
+header .container .item-2 .libelle button{
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+
+
+header .container .item-2 .libelle button a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    color: black;
+    
+}
+
+header .container .libelle button:nth-child(1) a{
+    color: #008000ff;
+}
+
+header .container .libelle button:nth-child(1):hover a{
+    color: #ffff;
+}
+
+header .container .libelle button:nth-child(2) a{
+    color: #008080ff;
+}
+
+header .container .libelle button:nth-child(2):hover a{
+    color: #ffff;
+}
+
+
+header .container .libelle button:nth-child(3) a{
+    color: #800000ff;
+}
+
+header .container .libelle button:nth-child(3):hover a{
+    color: #ffff;
+}
+
+@media only screen and (max-width: 1000px) {
+    header{
+        background-color: #ffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        background-color: #e9c6afc1;
+        height: 180vh;
+    }
+    header .container {
+        display: block;
+        width: 100%;
+        padding: 3px 3px 5px 3px;
+       
+    }
+
+    .container > div {
+        width: 100%;
+       
+    }
+
+    .container > div img {
+        width: 100%;
+       
+    }
+  }
+
+
