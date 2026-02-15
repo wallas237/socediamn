@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:5173', 'https://front.drlesimgroup.com/'],
+    'allowed_origins' => ['http://localhost:5173', 'https://socediamn.org', 'https://www.socediamn.org'],
 
     'allowed_origins_patterns' => [],
 
