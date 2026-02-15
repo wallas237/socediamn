@@ -68,9 +68,9 @@
         <div class="form">
             <div>
                 <div style="display: flex;">
-                    <img src="https://socediamn.org/img/socediamn.png"
+                    <img src="https://api.socediamn.org/img/socediamn.png"
                     alt='inscription à 5ème Congrès de la SOCEDIAMN et 8ème Congrès de la SFADE' />
-                    <img src="https://socediamn.org/img/sfade.png"
+                    <img src="https://api.socediamn.org/img/sfade.jpg"
                     alt='inscription à 5ème Congrès de la SOCEDIAMN et 8ème Congrès de la SFADE' />
                 </div>
 
