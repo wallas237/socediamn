@@ -18,7 +18,7 @@ class Noreply extends Mailable
      *
      * @return void
      */
-    public $subject = "Préparation du 5ème  congrès SOCEDIAMN et 8ème Congrès de la SFADE";
+    public $subject = "Préparation du congrès SOCEDIAMN et SFADE";
     public function __construct()
     {
         //
