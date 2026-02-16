@@ -130,7 +130,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    @if ($data['specialite'] == 10)
+                                    @if ($data['specialite'] == 1)
                                         <td>Spécialistes non-membres de la SOCEDIAMN</td>
                                         <td>50 000 XAF</td>
                                         <td>60 000 XAF</td>

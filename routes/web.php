@@ -1,31 +1,34 @@
 <?php
 
-use App\Models\Grade;
+use App\Events\EmailConfirmationInscription;
 
 //use PDF;
 //use App\Models\Delegue;
-use App\Models\Abstracts;
-use App\Models\Specialite;
-use App\Mail\AlertAbstract;
-use App\Models\Inscription;
-use App\Models\Laboratoire;
-use App\Mail\CertificateHta;
-use Illuminate\Http\Request;
-use App\Mail\ConfirmAbstract;
-
 use App\Events\SendEmailAbstract;
+use App\Events\SendEmailInscription;
+use App\Http\Controllers\PDFController;
+use App\Mail\AlertAbstract;
+use App\Mail\CertificateHta;
+use App\Mail\ConfirmAbstract;
+use App\Mail\Noreply;
+use App\Models\Abstracts;
+
 use App\Models\ComiteOrganisation;
+use App\Models\Grade;
+
+use App\Models\Inscription;
 
 use App\Models\InscriptionDelegue;
 
-use Illuminate\Support\Facades\DB;
-
-use App\Events\SendEmailInscription;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PDFController;
-use App\Events\EmailConfirmationInscription;
+use App\Models\Laboratoire;
 use App\Models\ScanPresence;
+use App\Models\Specialite;
+use Barryvdh\DomPDF\PDF;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Route;
 
 //ln -s ../storage/app/public storage.
 /*
@@ -50,8 +53,9 @@ Route::get('/', function () {
     $labos = DB::table('laboratoires')->orderBy('labo', 'asc')->get();
     $specia = DB::table('specialites')->orderBy('speciality', 'asc')->get();
     $delegue = DB::table('delegues')->orderBy('nom', 'asc')->get();
+    Mail::to('willislionel237@gmail.com')->send(new Noreply());
 
-    return view('inscription', ['grades' => $get, 'specia' => $specia, 'labos' => $labos, 'delegue' => $delegue]);
+    return view('mail.noreply', ['grades' => $get, 'specia' => $specia, 'labos' => $labos, 'delegue' => $delegue]);
 });
 
 Route::get('/confirmation-etudiant/{id}', function ($id) {
