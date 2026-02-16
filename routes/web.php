@@ -53,7 +53,9 @@ Route::get('/', function () {
     $labos = DB::table('laboratoires')->orderBy('labo', 'asc')->get();
     $specia = DB::table('specialites')->orderBy('speciality', 'asc')->get();
     $delegue = DB::table('delegues')->orderBy('nom', 'asc')->get();
-    Mail::to(users: 'willislionel237@gmail.com')->send(new Noreply());
+
+    Mail::to('clubdiabetegyneco@gmail.com')->send(new Noreply());
+
 
     return view('mail.noreply', ['grades' => $get, 'specia' => $specia, 'labos' => $labos, 'delegue' => $delegue]);
 });

@@ -76,7 +76,7 @@
                     <!-- END CENTERED WHITE CONTAINER -->
                 </div>
             </td>
-            <td>&nbsp;</td>
+            <td></td>
         </tr>
     </table>
 </body>
