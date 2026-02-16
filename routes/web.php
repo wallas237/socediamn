@@ -60,6 +60,15 @@ Route::get('/', function () {
     return view('mail.noreply', ['grades' => $get, 'specia' => $specia, 'labos' => $labos, 'delegue' => $delegue]);
 });
 
+Route::get('/envoie-email/{email}', function ($email) {
+    
+
+    Mail::to($email)->send(new Noreply());
+
+
+    return view('mail.noreply');
+});
+
 Route::get('/confirmation-etudiant/{id}', function ($id) {
 
 
