@@ -48,6 +48,7 @@ Route::get('/lettre-invitation/{id}', [PDFController::class, 'invitationPDF']);
 Route::get('/lettre-english/{id}', [PDFController::class, 'invitationEnPDF']);
 Route::get('/facture/{id}', [PDFController::class, 'facturePDF']);
 Route::get('/facture-laboratoire/{id}', [PDFController::class, 'factureLaboPDF']);
+/*
 Route::get('/', function () {
     $get = DB::table('grades')->orderBy('titre', 'asc')->get();
     $labos = DB::table('laboratoires')->orderBy('labo', 'asc')->get();
@@ -59,7 +60,7 @@ Route::get('/', function () {
 
     return view('mail.noreply', ['grades' => $get, 'specia' => $specia, 'labos' => $labos, 'delegue' => $delegue]);
 });
-
+*/
 Route::get('/envoie-email/{email}', function ($email) {
     
 
@@ -173,7 +174,7 @@ Route::get('/inscription-socediamn', function () {
 
 
 Route::get('/soumettre-un-resume', function () {
-    return view('resume');
+    return view('addresume');
 });
 
 Route::post('/resume-save', function (Request $request) {
@@ -213,7 +214,7 @@ Route::post('/resume-save', function (Request $request) {
         }
     }
     return back();
-});
+})->name('abstract');
 Route::post('/inscription-save', function (Request $resq) {
     $verifie = DB::table('inscriptions')
         ->where('name', $_POST['name'])

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbstractController;
 use App\Http\Controllers\api\InscriptionController;
 use App\Http\Controllers\api\ParametreController;
 use Illuminate\Http\Request;
@@ -21,6 +22,10 @@ Route::controller(ParametreController::class)->group(function(){
     Route::get('get-all-labo', 'allLabo')->middleware('throttle:api');
 
 });
+
+Route::controller(AbstractController::class)->group(function(){
+    Route::post('abstract', 'abstractSave');
+}); 
 
 Route::controller(InscriptionController::class)->group(function(){
     Route::post('save-inscription', 'saveInscription')->middleware('throttle:api');

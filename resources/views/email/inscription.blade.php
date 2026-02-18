@@ -68,10 +68,16 @@
         <div class="form">
             <div>
                 <div style="display: flex;">
-                    <img src="https://api.socediamn.org/img/socediamn.png"
-                    alt='inscription à 5ème Congrès de la SOCEDIAMN et 8ème Congrès de la SFADE' />
-                    <img src="https://api.socediamn.org/img/sfade.jpg"
-                    alt='inscription à 5ème Congrès de la SOCEDIAMN et 8ème Congrès de la SFADE' />
+                    <table>
+                            <thead>
+                                <tr>
+                                    <th><img src="https://api.socediamn.org/img/socediamn.png"
+                                            alt='5ème Congrès de la SOCEDIAMN et 8ème Congrès de la SFADE' /></th>
+                                    <th><img src="https://api.socediamn.org/img/sfade.jpg"
+                                            alt='5ème Congrès de la SOCEDIAMN et 8ème Congrès de la SFADE' /></th>
+                                </tr>
+                            </thead>
+                        </table>
                 </div>
 
                 {{-- <h3>{{ $data['name'] }}, {{ $data['id'] }}</h3> --}}

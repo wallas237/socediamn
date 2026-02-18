@@ -9,14 +9,5 @@ class Abstracts extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'civilite',
-        'email',
-        'telephone',
-        'adresse',
-        'fichier',
-        'titre'
-
-    ];
+    protected $guarded = [];
 }
