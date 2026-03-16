@@ -61,10 +61,13 @@ Route::get('/', function () {
     return view('mail.noreply', ['grades' => $get, 'specia' => $specia, 'labos' => $labos, 'delegue' => $delegue]);
 });
 */
-Route::get('/envoie-email/{email}', function ($email) {
+Route::get('/envoie-email', function () {
     
-
-    Mail::to($email)->send(new Noreply());
+    $inscriptions = Inscription::all();
+    foreach( $inscriptions as $inscription ) {
+        Mail::to($inscription->email)->send(new Noreply());
+    }
+    
 
 
     return view('mail.noreply');
