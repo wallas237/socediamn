@@ -61,7 +61,7 @@
             
             position: absolute;
             top: 7%;
-            width: 250%;
+            width: 85%;
         }
 
         .separateur {
@@ -148,7 +148,7 @@
         </div>
     </div>
     <div class="gauche">
-        <img src="img/socediamnlettre.PNG" alt="5ème congrès de la socediamn & 8ème congrès de la sfade ">
+        <img src="img/socediamnlettre.png" alt="5ème congrès de la socediamn & 8ème congrès de la sfade ">
 
     </div>
     <div class="separateur">

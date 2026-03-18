@@ -1,8 +1,12 @@
 <x-app-layout>
-    @if (session('message'))
-        <x-dialogue-alert color="{{ session('color') }}" message="{{ session('message') }}" />
-    @endif
+    @if (session('status'))
+        <div class="alert alert-success d-flex align-items-center" role="alert">
 
+            <div>
+                {{ session('status') }}
+            </div>
+        </div>
+    @endif
 
     <br>
 
