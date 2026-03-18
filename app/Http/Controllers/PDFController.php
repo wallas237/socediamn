@@ -2,30 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
+use App\Mail\LettreInvitation;
+use App\Models\Inscription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use PDF;
+
 class PDFController extends Controller
 {
     //
-    /*
-   function generatorPDF($id){
 
-        $inscr = DB::table('users')->where('id', $id)->first();
-        $name = $inscr->name;
-        $data=[
-            'name'=>$name,
-
-        ];
-        //$pdf = PDF::loadView('PDF.mstft', $data)
-                           // ->setPaper('a4');
-        //$pdf = PDF::loadView('PDF.certificate', $data)
-                          //  ->setPaper('a4', 'landscape');
-        //return $pdf->stream();invitationPDF
-
-       // return $pdf->download($inscr->name.'.pdf');
-       return view('PDF.mstft');
-   }*/
     function generatorPDF($id)
     {
 
@@ -52,7 +39,7 @@ class PDFController extends Controller
         $data = [
             'name' => $name,
             'titre' => ucwords($inscr->titre),
-            'nom' => strtoupper($inscr->name),
+            'nom' => strtoupper($inscr->name).' '.ucwords($inscr->prenom),
             'ville' => $inscr->ville . '/' . $inscr->pays
 
         ];
@@ -67,7 +54,7 @@ class PDFController extends Controller
         $data = [
             'name' => $name,
             'titre' => ucwords($inscr->titre),
-            'nom' => strtoupper($inscr->name),
+            'nom' => strtoupper($inscr->name).' '.ucwords($inscr->prenom),
             'ville' => $inscr->ville . '/' . $inscr->pays
 
         ];
@@ -114,5 +101,12 @@ class PDFController extends Controller
         ];
         $pdf = PDF::loadView('PDF.recu-laboratoire', $data);
         return $pdf->stream();
+    }
+    function envoyezLettreInvitation($id){
+        $inscr = Inscription::find($id);
+        
+        $message = new LettreInvitation($inscr);
+        Mail::to("wallasbanezoue237@gmail.com")->send($message);
+        return back()->with(['message', 'Lettre d\'invitation envoyée avec succès!', 'color' => 'success',]);
     }
 }

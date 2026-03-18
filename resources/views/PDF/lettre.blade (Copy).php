@@ -16,11 +16,15 @@
             width: 100%;
             display: flex !important;
             justify-content: space-between;
+            position: absolute;
+            padding-left: 3%;
+            padding-top: 1%;
 
         }
 
-        .entete .img {
-            padding: 25px 20px 10px 40px;
+        .entete img {
+           width: 13%;
+           position: absolute;
         }
 
         .h {
@@ -43,24 +47,39 @@
         .gauche {
 
             /* background: #deebf7;*/
-            margin-left: 20px;
-            margin-top: 20px;
-            padding-bottom: 20px;
-            padding-top: 10px;
+           /*  margin-left: 20px;*/
+            margin-top: 7%; 
+           
             text-align: center;
             position: absolute;
+            padding-left: 1%;
+           
         }
 
         .gauche img {
-            width: 110%;
+            
+            
+            position: absolute;
+            top: 7%;
+            width: 250%;
         }
 
         .separateur {
             position: absolute;
             left: 30%;
+            top: 13.5%;
+             height: 100%;
+             
         }
 
-
+        .separateur img{
+           
+            
+            height: 85%;
+           
+            
+        }
+        
         .date-jour {
             position: absolute;
             right: 20%;
@@ -70,41 +89,48 @@
         .destinataire {
             position: absolute;
             right: 10%;
-            top: 30%;
+            top: 20%;
         }
 
         .objet {
             width: 55%;
             margin-left: 33%;
             position: absolute;
-            top: 40%;
+            top: 25%;
             padding-right: 10%;
         }
 
         .politesse {
             position: absolute;
             margin-left: 33%;
-            top: 48%;
+            top: 32%;
         }
 
         .droit {
             position: absolute;
             margin-left: 33%;
-            top: 50%;
+            top: 35%;
             padding-right: 8%;
-            line-height: 25px;
+            /* line-height: 25px; */
         }
 
         .signature {
             position: absolute;
             top: 80%;
-            left: 32%;
+            left: 40%;
+            width: 40%;
+        }
+
+        .signature-3 {
+            position: absolute;
+            top: 85%;
+            left: 50%;
             width: 40%;
         }
 
         .signature2 {
             position: absolute;
-            top: 80%;
+            top: 90%;
             left: 65%;
             width: 40%;
         }
@@ -131,9 +157,9 @@
     <div class="date-jour">
         <h4>Douala, <span> </span><span>{{ date('d') }} </span> <span>
                 @if (date('m') == '09')
-                    {{ 'September' }}
+                {{ 'September' }}
                 @elseif(date('m') == '10')
-                    {{ 'October' }}
+                {{ 'October' }}
                 @else
                 @endif
             </span> <span>{{ date('Y') }} </span></h4>
@@ -149,6 +175,7 @@
     <div class="politesse">
         <p>Dear <strong>{{ $titre . ' ' . $nom }}</strong></p>
     </div>
+    <img src="img/socediamn.png" alt="5ème congrès de la socediamn" id="filligrane" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; width: 60%;">
     <div class="droit">
         We are inviting you to participate at the 4 th Cameroonian Society of endocrinology , Diabetology Métabolism and
         Nutrition Congress ( SOCEDIAMN) which will take place on the 9 to 11th November 2023 at the Hotel Vallée des
@@ -165,8 +192,8 @@
     <div class="signature">
         <div class="signature-1">
             <h4 style="width: 70%;">
-                Chairman of the local <b/> organizing committee 
-               
+                Chairman of the local <b /> organizing committee
+
             </h4>
             <br><br>
             <h4>

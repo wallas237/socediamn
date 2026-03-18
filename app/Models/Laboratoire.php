@@ -8,9 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class Laboratoire extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'labo',
-       
-    ];
 }

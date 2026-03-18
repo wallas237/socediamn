@@ -8,8 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class ScanPresence extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'info_participant',
-        'salle'
-    ];
+    protected $guarded = [];
 }

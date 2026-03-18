@@ -2,37 +2,58 @@
 
 namespace App\Mail;
 
+use App\Models\Abstracts;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Mailables\Envelope;
-
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class Noreply extends Mailable implements ShouldQueue
+class NoReply extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
-     *
-     * @return void
      */
-    public $subject = "Préparation du congrès SOCEDIAMN & SFADE";
-    public function __construct()
+    public $data;
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
-    
-   
     /**
-     * Build the message.
-     *
-     * @return $this
+     * Get the message envelope.
      */
-    public function build()
+    public function envelope(): Envelope
     {
-        return $this->markdown('mail.noreply');
+        return new Envelope(
+            subject: "Correction d'information - Veuillez ignorer nos précédents emails",
+        );
+    }
+
+    /**
+     * Get the message content definition.
+     */
+    public function content(): Content
+    {
+        $civilite = Abstracts::where('email', $this->data->email)->first();
+        return new Content(
+            view: 'email.abstract.excuse-mail',
+            with: [
+                'data'=>$civilite,
+            ]
+        );
+    }
+
+    /**
+     * Get the attachments for the message.
+     *
+     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     */
+    public function attachments(): array
+    {
+        return [];
     }
 }

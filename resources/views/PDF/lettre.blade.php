@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ "Lettre d'invitation" }}</title>
-    <style>
+   <style>
         * {
             padding: 0px;
             margin: 0px;
@@ -16,11 +16,15 @@
             width: 100%;
             display: flex !important;
             justify-content: space-between;
+            position: absolute;
+            padding-left: 3%;
+            padding-top: 1%;
 
         }
 
-        .entete .img {
-            padding: 25px 20px 10px 40px;
+        .entete img {
+           width: 13%;
+           position: absolute;
         }
 
         .h {
@@ -43,24 +47,39 @@
         .gauche {
 
             /* background: #deebf7;*/
-            margin-left: 20px;
-            margin-top: 20px;
-            padding-bottom: 20px;
-            padding-top: 10px;
+           /*  margin-left: 20px;*/
+            margin-top: 7%; 
+           
             text-align: center;
             position: absolute;
+            padding-left: 1%;
+           
         }
 
         .gauche img {
-            width: 110%;
+            
+            
+            position: absolute;
+            top: 7%;
+            width: 250%;
         }
 
         .separateur {
             position: absolute;
             left: 30%;
+            top: 13.5%;
+             height: 100%;
+             
         }
 
-
+        .separateur img{
+           
+            
+            height: 85%;
+           
+            
+        }
+        
         .date-jour {
             position: absolute;
             right: 20%;
@@ -70,41 +89,48 @@
         .destinataire {
             position: absolute;
             right: 10%;
-            top: 30%;
+            top: 20%;
         }
 
         .objet {
             width: 55%;
             margin-left: 33%;
             position: absolute;
-            top: 40%;
+            top: 25%;
             padding-right: 10%;
         }
 
         .politesse {
             position: absolute;
             margin-left: 33%;
-            top: 48%;
+            top: 32%;
         }
 
         .droit {
             position: absolute;
             margin-left: 33%;
-            top: 50%;
+            top: 35%;
             padding-right: 8%;
-            line-height: 25px;
+            /* line-height: 25px; */
         }
 
         .signature {
             position: absolute;
             top: 80%;
-            left: 32%;
+            left: 40%;
+            width: 40%;
+        }
+
+        .signature-3 {
+            position: absolute;
+            top: 85%;
+            left: 50%;
             width: 40%;
         }
 
         .signature2 {
             position: absolute;
-            top: 80%;
+            top: 90%;
             left: 65%;
             width: 40%;
         }
@@ -122,70 +148,114 @@
         </div>
     </div>
     <div class="gauche">
-        <img src="img/lettresocediamn.JPG" alt="4ème congrès de la socediamn">
+        <img src="img/socediamnlettre.PNG" alt="5ème congrès de la socediamn & 8ème congrès de la sfade ">
 
     </div>
     <div class="separateur">
-        <img src="img/separateursocediamn.JPG" alt="4ème congrès de la socediamn">
+        <img src="img/separateursocediamn.png" alt="5ème congrès de la socediamn & 8ème congrès de la sfade">
     </div>
     <div class="date-jour">
-        <h4>Douala, <span> </span><span>{{ date('d') }} </span> <span>
-                @if (date('m') == '09')
-                    {{ 'September' }}
+        <h4>Yaounde, <span>
+            </span>
+            <span>{{ date('d') }}
+                <sup>
+                    @if (date('d') == '01' || date('d') == '21' || date('d') == '31')
+                        st
+                    @elseif(date('d') == '02' || date('d') == '22')
+                        nd
+                    @elseif(date('d') == '03' || date('d') == '23')
+                        rd
+                    @else
+                        th
+                    @endif
+                </sup>
+            </span>
+            <span>
+                @if (date('m') == '03')
+                    {{ 'March' }}
+                @elseif(date('m') == '04')
+                    {{ 'April' }}
                 @elseif(date('m') == '10')
                     {{ 'October' }}
                 @else
                 @endif
-            </span> <span>{{ date('Y') }} </span></h4>
+            </span> <span>{{ date('Y') }} </span>
+        </h4>
     </div>
     <div class="destinataire">
-        <h3>To {{ $name }}</h3>
+
+        <h3></h3>
     </div>
     <div class="objet">
-        <h4><span style="text-decoration: underline;">Object :
-            </span><em>{{ 'Invitation letter for the 4 th SOCEDIAMN Congress - 9 to 11 November 2023 - Hotel Vallée des princes Douala' }}</em>
+        <h4><span style="text-decoration: underline;">Subject :
+            </span><em>{{ 'Invitation letter for the SOCEDIAMN conference from 16 to 18 April 2026' }}</em>
         </h4>
     </div>
     <div class="politesse">
-        <p>Dear <strong>{{ $titre . ' ' . $nom }}</strong></p>
+         @php
+            $civilite = '';
+        @endphp
+        @if ($titre == 'Pr')
+            @php
+                $civilite = 'Dear Professor';
+            @endphp
+        @elseif($titre == 'Dr')
+            @php
+                $civilite = 'Dear Doctor';
+            @endphp
+        @elseif($titre == 'Mme')
+            @php
+                $civilite = 'Dear Madam';
+            @endphp
+        @elseif($titre == 'M')
+            @php
+                $civilite = 'Dear Mister';
+            @endphp
+        @elseif($titre == 'Mlle')
+            @php
+                $civilite = 'Dear Miss';
+            @endphp
+        @elseif($titre == 'M.')
+            @php
+                $civilite = 'Dear Mister';
+            @endphp
+        @else
+            @php
+                $civilite = 'Dear ' . $titre;
+            @endphp
+        @endif
+        <p><strong>{{ $civilite }} {{ $nom }}</strong></p>
+       
     </div>
+         <img src="img/socediamn.png" alt="5ème congrès de la socediamn" id="filligrane" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; width: 60%;">
+
     <div class="droit">
-        We are inviting you to participate at the 4 th Cameroonian Society of endocrinology , Diabetology Métabolism and
-        Nutrition Congress ( SOCEDIAMN) which will take place on the 9 to 11th November 2023 at the Hotel Vallée des
-        princes in Douala.
+        On behalf of the Organizing Committee, we have the honor to invite you to participate in the Congress of the Cameroonian Society of Endocrinology, Diabetology, Metabolic Diseases and Nutrition (SOCEDIAMN), which will take place from April 16 to 18, 2026, at the Faculty of Medicine and Biomedical Sciences of the University of Yaoundé I, in Yaoundé, Cameroon.
         <br>
         <br>
-        It will be our pleasure to welcome you during this Congress.
+       This congress will bring together national and international specialists to discuss recent advances in the fields of endocrinology, diabetology, metabolic diseases, and nutrition.
         <br>
         <br>
-        This letter Can serve for administrative formalities necessary for our observation at the Congress.
-        <br><br>
-        Looking forward to receiving you , receive expression of our sincere salutations.
+It would be our great pleasure to welcome you to this congress as a representative of your country and to benefit from your participation in this scientific meeting.        <br><br>
+       We look forward to the pleasure of welcoming you, and we kindly ask you to accept, {{ $civilite }}, the expression of our highest consideration.
     </div>
-    <div class="signature">
+   <div class="signature">
         <div class="signature-1">
-            <h4 style="width: 70%;">
-                Chairman of the local <b/> organizing committee 
-               
+            <h4 style="width: 90%;">
+                On behalf of the General Secretariat <b />
+              
             </h4>
-            <br><br>
+            
             <h4>
-                Professor Simeon CHOUKEM
+                Professor ETOA Martine Epse ETOGA
             </h4>
-            <img src="img/prsimeon.png" alt="4ème congrès de la socediamn" style="width: 60%;">
+            <img src="img/signatureEtoa.png" alt="5ème congrès de la socediamn & 8ème congrès de sdafe" style="width: 30%;">
         </div>
     </div>
-    <div class="signature2">
-        <div class="signature-1">
-            <h4>
-                The President
-            </h4>
-            <br><br><br>
-            <h4>
-                Professor MBANYA Jean Claude
-            </h4>
-            <img src="img/prclaude.png" alt="4ème congrès de la socediamn" style="width: 60%;">
-        </div>
+    
+    <div class="signature-3">
+         <img src="img/cachet_socediamn.png" alt="5ème congrès de la socediamn & 8ème congrès de sdafe" style="width: 30%;">
+
     </div>
 
 </body>

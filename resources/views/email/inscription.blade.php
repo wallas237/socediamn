@@ -121,7 +121,7 @@
 
                     </h4>
                     <br>
-                    @if ($data['specialite'] == 5 or $data['specialite'] == 12)
+                    @if ($data['specialite'] == 5 or $data['specialite'] == 10)
                         <h3>Votre participation au congès est gratuite</h3>
                     @else
                         <h3>{{ "Tarifs d'inscription" }}</h3>

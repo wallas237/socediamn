@@ -14,6 +14,4 @@ class Specialite extends Model
         'speciality',
 
     ];
-
-    
 }

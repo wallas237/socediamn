@@ -1,46 +1,192 @@
 <?php
 
-use App\Events\EmailConfirmationInscription;
 
-//use PDF;
-//use App\Models\Delegue;
-use App\Events\SendEmailAbstract;
-use App\Events\SendEmailInscription;
+use App\Http\Controllers\AbstractsController;
+use App\Http\Controllers\AtelierAfaRespir;
+use App\Http\Controllers\BadgeAfaRespirController;
+use App\Http\Controllers\BadgeAtelierSaplfScp;
+use App\Http\Controllers\BadgeController;
+use App\Http\Controllers\CertificationController;
+use App\Http\Controllers\EnqueteSatisfactionController;
+use App\Http\Controllers\HackathonController;
+use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\PDFController;
-use App\Mail\AlertAbstract;
-use App\Mail\CertificateHta;
-use App\Mail\ConfirmAbstract;
-use App\Mail\Noreply;
-use App\Models\Abstracts;
-
+use App\Http\Controllers\PresenceCongresController;
+use App\Http\Controllers\QuizController;
+use App\Http\Controllers\ScanController;
+use App\Http\Controllers\SendCertificatCongres;
+use App\Http\Controllers\ServiceRenduController;
+use App\Http\Controllers\WordController;
+use App\Mail\AbstractRejete;
+use App\Mail\EnqueteSatisfaction;
+use App\Mail\NoReply;
+use App\Models\AtelierSaplfScp;
 use App\Models\ComiteOrganisation;
-use App\Models\Grade;
-
+use App\Models\ComOraleValide;
 use App\Models\Inscription;
-
-use App\Models\InscriptionDelegue;
-
-use App\Models\Laboratoire;
-use App\Models\ScanPresence;
-use App\Models\Specialite;
-use Barryvdh\DomPDF\PDF;
+use App\Models\InscriptionAtelierAfaRespir;
+use App\Models\PosterValide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
-//ln -s ../storage/app/public storage.
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
+
+Route::get('/', function () {
+    //return strlen("Tuberculose pharmaco sensible : attitudes chez le personnel de santé en république du");
+    if (Auth::guard('web')) {
+        return redirect('/dashboard');
+    }
+    return view('auth.login');
+});
+
+Route::get('/personnel-appui', function () {
+    return view('comite');
+});
+
+Route::post('/personnel-appui', function (Request $res) {
+    $res->validate([
+        'email' => 'required|unique:comite_organisations',
+        'titre' => 'required',
+        'service' => 'required'
+    ]);
+
+
+
+    $comite = ComiteOrganisation::create([
+        'titre' => $res->titre,
+        'name' => $res->name,
+        'prenom' => $res->prenom,
+        'email' => $res->email,
+        'service' => $res->service
+
+    ]);
+
+
+
+
+    return back()->with('status', $res->titre . " " . $res->name . " vous avez bien été enregistré");
+});
+
+Route::get('/rejet-abstract', function () {
+
+    //$valides = ComOraleValide::all();
+    $i = 0;
+    $valides = DB::table('com_rejetes')->where('confirmation', 0)->get();
+    foreach ($valides as $valide) {
+
+
+        $message = (new AbstractRejete($valide->numero))
+            ->onQueue('rejet');
+
+        Mail::to($valide->email)
+            ->queue($message);
+    }
+    return "OK mail";
+});
+
+Route::get('/qr-code-transform', function () {
+
+    $path = public_path('atelier-2-drainage-pleural.svg');
+    QrCode::size(400)
+        ->color(40, 40, 40)
+        ->margin(1)
+        ->generate(
+            "https://dashboard.scpneumologie.com/enquete-satisfaction-congres-saplf-scp/22",
+            $path
+        );
+});
+
+Route::get('/regulariser-atelier', function () {
+
+    //$valides = ComOraleValide::all();
+    $i = 0;
+    $inscription = Inscription::all();
+
+    foreach ($inscription as $v) {
+        if ($v->atelier_pre_1 == "Oui"  or $v->atelier_pre_2 == "Oui") {
+            $atelierInscription = AtelierSaplfScp::where('email', $v->email)->first();
+            if (empty($atelierInscription)) {
+                $inscriptionInst = AtelierSaplfScp::create([
+                    'titre' => $v->titre,
+                    'name' => $v->name,
+                    'prenom' => $v->prenom,
+                    'atelier_pre_1' => $v->atelier_pre_1,
+                    'prix_atelier_1' => $v->prix_atelier_1,
+                    'atelier_pre_2' => $v->atelier_pre_2,
+                    'prix_atelier_2' => $v->prix_atelier_2,
+                    'grade' => $v->grade,
+                    'specialite' => $v->specialite,
+                    'email' => $v->email,
+                    'telephone' => $v->telephone,
+                    'ville' => $v->ville,
+                    'pays' => $v->pays,
+                ]);
+            }
+        }
+    }
+    return "OK mail";
+});
+
+// Route::get('/mail-excuse', function () {
+
+//     //$valides = ComOraleValide::all();
+//     $i = 0;
+//     $valides = PosterValide::get();
+
+//     foreach ($valides as $valide) {
+//          $posterExist = DB::table('poster_valides')->where('email', $valide->email)->get();
+//        /* $udpateCom = ComOraleValide::where('email', $valide->email)->update([
+//             'confirmation' => 1
+//         ]);*/
+//         if (count($posterExist)>=2) {
+//             $poster = PosterValide::where('email', $valide->email)->update([
+//                 'confirmation' => 0
+//             ]);
+//             // $udpateCom = ComOraleValide::where('email', $valide->email)->update([
+//             //     'confirmation' => 0
+//             // ]);
+//             //Mail::to($valide->email)->send(new NoReply($valide));
+//         }
+
+//     }
+//     return "OK mail";
+// });
+
+Route::get('/envoyer-participate/{id}', function ($id) {
+
+    $inscription = Inscription::find($id);
+    $message = (new EnqueteSatisfaction($inscription->id))
+        ->onQueue('confirm-emails-abstract');
+
+    Mail::to($inscription->email)
+        ->queue($message);
+    return back();
+});
+
+Route::get('/email-enquete-satisfaction', function () {
+    $scan = DB::table('scan_presences')
+        ->select('invite_id')
+        ->distinct()
+        ->get();
+    foreach ($scan as $v) {
+        $inscription = Inscription::find($v->invite_id);
+        $message = (new EnqueteSatisfaction($inscription->id))
+            ->onQueue('confirm-emails-abstract');
+
+        Mail::to($inscription->email)
+            ->queue($message);
+    }
+});
+
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::get('/generating-pdf/{id}', [PDFController::class, 'generatorPDF']);
 Route::get('/resultat-pdf/{id}', [PDFController::class, 'resultatPDF']);
@@ -48,503 +194,186 @@ Route::get('/lettre-invitation/{id}', [PDFController::class, 'invitationPDF']);
 Route::get('/lettre-english/{id}', [PDFController::class, 'invitationEnPDF']);
 Route::get('/facture/{id}', [PDFController::class, 'facturePDF']);
 Route::get('/facture-laboratoire/{id}', [PDFController::class, 'factureLaboPDF']);
-/*
-Route::get('/', function () {
-    $get = DB::table('grades')->orderBy('titre', 'asc')->get();
-    $labos = DB::table('laboratoires')->orderBy('labo', 'asc')->get();
-    $specia = DB::table('specialites')->orderBy('speciality', 'asc')->get();
-    $delegue = DB::table('delegues')->orderBy('nom', 'asc')->get();
-
-    Mail::to('clubdiabetegyneco@gmail.com')->send(new Noreply());
-
-
-    return view('mail.noreply', ['grades' => $get, 'specia' => $specia, 'labos' => $labos, 'delegue' => $delegue]);
+Route::get('/envoyez-lettre-invitation/{id}', [PDFController::class, 'envoyezLettreInvitation']);
+Route::controller(CertificationController::class)->group(function () {
+    Route::get('/visualiser-certificat-communication/{id}', 'orale')->name('certificat.orale');
+    Route::get('/poster-communication-visualisation/{id}', 'poster')->name('certificat.poster');
+    Route::get('/oral-envoyer-certificat-communication/{id}', 'orale')->name('orale.certificat');
+    Route::get('/conference-envoyer-certificat/{id}', 'reference')->name('reference.certificat');
+    Route::get('/certificat-meilleur-presentation/{id}', 'best')->name('best.certificat');
+    Route::get('/certificat-participation/{id}', 'participation')->name('participation.certificat');
+    Route::get('/certificat-atelier-echographie/{id}', 'participationAtelierEcho')->name('atelier.echographie.certificat');
+    Route::get('/certificat-atelier-spirometrie/{id}', 'participationAtelierSpiro')->name('atelier.spirometrie.certificat');
+    Route::get('/meilleur-poster-certificat-communication/{id}', 'bestPoster')->name('best.poster');
+    Route::get('/first-chercheur/{id}', 'firstChercheur')->name('first.chercheur');
+    Route::get('/second-chercheur/{id}', 'secondChercheur')->name('second.chercheur');
+    Route::get('/third-chercheur/{id}', 'thirdChercheur')->name('third.chercheur');
+    Route::get('/specialiste-first/{id}', 'firstSpecialiste')->name('specialiste.first');
+    Route::get('/specialiste-second/{id}', 'secondSpecialiste')->name('specialiste.second');
+    Route::get('/moderation-certificat/{id}', 'moderateur')->name('moderation.certificat');
+    Route::get('/orateur-certificat/{id}', 'orateur')->name('orateur.certificat');
 });
-*/
-Route::get('/envoie-email', function () {
-    
-    $inscriptions = Inscription::all();
-    foreach( $inscriptions as $inscription ) {
-        Mail::to($inscription->email)->send(new Noreply());
-    }
-    
+Route::controller(ServiceRenduController::class)->group(function () {
 
-
-    return view('mail.noreply');
-});
-
-Route::get('/confirmation-etudiant/{id}', function ($id) {
-
-
-    return view('confirmation-etudiant', ['id' => $id]);
+    Route::get('/visualiser-service-rendu/{id}', 'visualisezServiceRendu');
 });
 
-Route::post('/etudiant-confirmation-save', function (Request $request) {
-
-
-
-
-
-    $chemin = $request->file('fichier')->store('resume');
-    $confirmation = DB::table('inscriptions')
-        ->where('id', $request->id)
-        ->update(['fichier' => $chemin]);
-    if (session()->has('abstract')) {
-    } else {
-        session()->put('abstract', "L'opération a bien été enregistrée");
-        session()->put('color', "225500fa");
-    }
-
-    return back();
-});
-
-Route::get('/liste-etudiant', function () {
-    $get = DB::table('inscriptions')->where('specialite', 5)->paginate(40);
-
-    return view('admin.list-etudiant', ['inscript' => $get]);
-});
-
-Route::post('/voir-recu', function (Request $request) {
-    $get = DB::table('inscriptions')->where('id', $request->id)->first();
-
-    return $get->fichier;
+Route::controller(AtelierAfaRespir::class)->group(function () {
+    Route::get('/afa-respir-certificat-participation/{id}', 'afficherCertificationParticipationAfaRespir')->name('liste.afa.respir.atelier.pre.inscription');
+    Route::get('/afa-respir-certificat-communication', 'attestationCommunication');
 });
 
 
-Route::post('/send-certificate-save', function (Request $request) {
-
-
-
-
-
-    $chemin = $request->file('fichier')->store('resume');
-
-
-    $cert = DB::table('inscriptions')->where('email', $request->email)->first();
-    $alert = ['email' => $request->email, 'fichier' => '/' . $chemin, 'titre' => $cert->titre, 'name' => $cert->name];
-
-    Mail::to($alert['email'])->send(new CertificateHta($alert));
-    $confirmation = DB::table('inscriptions')
-        ->where('id', $cert->id)
-        ->update(['confirmation_inscription' => 1, 'ordonnateur' => Auth::user()->name]);
-    if (session()->has('abstract')) {
-    } else {
-        session()->put('abstract', "La certification a été enregistrée");
-        session()->put('color', "225500fa");
-    }
-
-    return back();
-});
-Route::get('/send-certificate/{id}', function ($id) {
-    $get = DB::table('inscriptions')->where('id', $id)->first();
-
-    return view('admin/certificate', ['email' => $get->email]);
-})->middleware(['auth']);
-Route::post('/send-certificate-save', function (Request $request) {
-
-
-
-
-
-    $chemin = $request->file('fichier')->store('resume');
-
-
-    $cert = DB::table('inscriptions')->where('email', $request->email)->first();
-    $alert = ['email' => $request->email, 'fichier' => '/' . $chemin, 'titre' => $cert->titre, 'name' => $cert->name];
-
-    Mail::to($alert['email'])->send(new CertificateHta($alert));
-    $confirmation = DB::table('inscriptions')
-        ->where('id', $cert->id)
-        ->update(['confirmation_inscription' => 1, 'ordonnateur' => Auth::user()->name]);
-    if (session()->has('abstract')) {
-    } else {
-        session()->put('abstract', "La certification a été enregistrée");
-        session()->put('color', "225500fa");
-    }
-
-    return back();
-});
-Route::get('/inscription-socediamn', function () {
-    $get = DB::table('grades')->orderBy('titre', 'asc')->get();
-    $labos = DB::table('laboratoires')->orderBy('labo', 'asc')->get();
-    $specia = DB::table('specialites')->orderBy('speciality', 'asc')->get();
-    $delegue = DB::table('delegues')->orderBy('nom', 'asc')->get();
-
-    return view('inscription', ['grades' => $get, 'specia' => $specia, 'labos' => $labos, 'delegue' => $delegue]);
-});
-
-
-
-
-Route::get('/soumettre-un-resume', function () {
-    return view('addresume');
-});
-
-Route::post('/resume-save', function (Request $request) {
-    $verifie = DB::table('abstracts')
-        ->where('name', $request->name)
-        ->where('email', $request->email)
-        ->where('titre', $request->titre)->first();
-    /*  ->where('resume', $request->resume)
-                      ->where('auteurs', $request->auteurs)->first();*/
-
-    if (!empty($verifie)) {
-        if (session()->has('abstract')) {
-        } else {
-            session()->put('abstract', "Vous avez déjà été enregistré");
-            session()->put('color', "ff6600fa");
-        }
-    } else {
-        $abstract = Abstracts::create([
-            'civilite' => $request->civilite,
-            'name' => $request->name,
-            'email' => $request->email,
-            'telephone' => $request->telephone,
-            'titre' => $request->titre,
-            'fichier' => $request->file('fichier')->store('resume'),
-
-
-        ]);
-        //dd($abstract);
-        $data = ['email' => $abstract->email, 'fichier' => $abstract->fichier, 'titre' => $abstract->titre, 'phone' => $abstract->telephone, 'civilite' => $abstract->civilite, 'name' => $abstract->name];
-        //SendEmailAbstract::dispatch($data);
-        event(new SendEmailAbstract($data));
-
-        if (session()->has('abstract')) {
-        } else {
-            session()->put('abstract', "Votre résumé a été enregistré");
-            session()->put('color', "225500fa");
-        }
-    }
-    return back();
-})->name('abstract');
-Route::post('/inscription-save', function (Request $resq) {
-    $verifie = DB::table('inscriptions')
-        ->where('name', $_POST['name'])
-        ->where('prenom', $_POST['prenom'])
-        ->orwhere('email', $_POST['email'])
-        ->orwhere('telephone', trim($_POST['telephone']))->first();
-    $nom = $_POST['titre'];
-    if (!empty($verifie)) {
-        if (session()->has('inscription')) {
-        } else {
-            session()->put('inscription', $nom . " " . $_POST['name'] . " vous avez déjà été enrgistré");
-            session()->put('color', "ff6600fa");
-        }
-    } else {
-
-        $inscription = Inscription::create([
-            'titre' => $nom,
-            'name' => $_POST['name'],
-            'email' => $_POST['email'],
-            'prenom' => $_POST['prenom'],
-            /*'ville'=>$_POST['ville'],*/
-            'pays' => $_POST['pays'],
-            /*'gender'=>$_POST['gender'],*/
-            'telephone' => $_POST['telephone'],
-            'grade' => $_POST['grade'],
-            'specialite' => $_POST['specialite'],
-            'labo' => $_POST['labo'],
-            'charge' => $_POST['charge'],
-            'delegue' => $_POST['delegue'],
-
-        ]);
-        SendEmailInscription::dispatch($inscription);
-
-        // event(new SendEmailInscription($inscription));
-        //print_r($_POST);
-        // die();
-        /* $detail = ['email'=>$_POST['email'], 'charge'=>$_POST['charge'], 'name'=>$_POST['name'].' '.$_POST['prenom'], 'titre'=>$nom];
-    //$alert = ['email'=>'sccardiologie237@yahoo.fr', 'mail'=>$_POST['email'], 'name'=>$nom.' '.$_POST['prenom'], 'phone'=>$_POST['telephone']];
-    $alert = ['email'=>'wlunderwear237@gmail.com', 'mail'=>$_POST['email'], 'charge'=>$_POST['charge'], 'name'=>$nom.' '.$_POST['prenom'], 'phone'=>$_POST['telephone'], 'delegue'=>$_POST['delegue'], 'labo'=>$_POST['labo']];
-        Mail::to($alert['email'])->send(new AlertInscription($alert));
-        Mail::to($detail['email'])->send(new ConfirmationInscription($detail));*/
-        if (session()->has('inscription')) {
-        } else {
-            session()->put('inscription', $nom . " " . $_POST['name'] . " votre pré-inscription  a été enregistrée, vous recevrez un mail de confirmation");
-            session()->put('color', "225500fa");
-        }
-    }
-
-    return back();
-});
-
-//Route::post('/update-name/{id}', [InscriptionController::class, 'create'])->middleware(['auth']);
-
-Route::post('/grade', function (Request $resq) {
-    $get = DB::table('grades')->where('titre', $_POST['titre'])->first();
-
-    if (empty($get)) {
-        $gra = Grade::create([
-            'titre' => $_POST['titre'],
-
-        ]);
-        $gra->save();
-    }
-
-    $get = DB::table('grades')->where('titre', $_POST['titre'])->first();
-    return view('ajx.grade', ['grade' => $get]);
-});
-
-
-Route::post('/laboratoire', function (Request $resq) {
-    $get = DB::table('laboratoires')->where('labo', $_POST['labo'])->first();
-
-    if (empty($get)) {
-        $gra = Laboratoire::create([
-            'labo' => $_POST['labo'],
-
-        ]);
-        $gra->save();
-    }
-
-    $get = DB::table('laboratoires')->where('labo', $_POST['labo'])->first();
-    return view('ajx.labo', ['labos' => $get]);
-});
-
-Route::get('/confirm-inscription/{id}', function ($id) {
-    $nom = "";
-
-
-
-
-
-    /*$alert = ['email'=>'armel2001@yahoo.fr',  'ordonateur'=>Auth::user()->name,  'name'=>$nom];
-        Mail::to($alert['email'])->send(new ConfirmationPaiements($alert));
-    //
-         $confirm = ['email'=>$user->email,  'name'=>$nom];
-   	Mail::to($confirm['email'])->send(new ConfirmInscription($confirm));*/
-    return view('admin.confirm-inscription', ['id' => $id]);
-})->middleware(['auth']);;
-
-Route::post('/confirm-inscription/{id}', function ($id) {
-    $user = DB::table('inscriptions')->where('id', $id)->first();
-    EmailConfirmationInscription::dispatch($user);
-    $confirmation = DB::table('inscriptions')
-        ->where('id', $id)
-        ->update([
-            'confirmation_inscription' => 1,
-            'ordonnateur' => Auth::user()->id,
-            'montant' => $_POST['montant']
-        ]);
-    return redirect('/list-inscription');
-})->middleware(['auth']);
-
-
-
-Route::get('/email', function () {
-
-
-
-
-
-    return view('email.inscription');;
-});
-
-Route::post('/specialiste', function (Request $resq) {
-    $specialite = Specialite::create([
-        'speciality' => $_POST['speciality'],
-
-    ]);
-    $get = DB::table('specialites')->where('speciality', $_POST['speciality'])->first();
-    return view('ajx.specialite', ['spec' => $get]);
-})->name('specialiste');
-
-Route::get('/list-inscription', function () {
-    $get = DB::table('inscriptions')->where('confirmation_inscription', 0)->paginate(40);
-
-    return view('admin.listeinscription', ['inscript' => $get]);
-})->middleware(['auth']);
-
-Route::post('/list-inscription', function (Request $resq) {
-    $get = DB::table('inscriptions')
-        ->where("name", 'like', "%$resq->name%")
-        ->orwhere("prenom", 'like', "%$resq->name%")
-        ->paginate(40);
-
-    return view('admin.listeinscription', ['inscript' => $get]);
-})->middleware(['auth']);
-
-Route::get('/list-abstract', function () {
-    $get = DB::table('abstracts')->paginate(40);
-
-    return view('admin.liste-abstract', ['inscript' => $get]);
-})->middleware(['auth']);
-
-Route::post('/list-abstract', function (Request $resq) {
-    $get = DB::table('abstracts')
-        ->where("name", 'like', "%$resq->name%")
-        ->paginate(40);
-
-    return view('admin.liste-abstract', ['inscript' => $get]);
-})->middleware(['auth']);
-
-Route::get('/list-des-inscris', function () {
-    $get = DB::table('inscriptions')->where('confirmation_inscription', 1)->paginate(40);
-
-    return view('admin.dejainscris', ['inscript' => $get]);
-})->middleware(['auth']);
-
-Route::post('/list-des-inscris', function (Request $resq) {
-    $get = DB::table('inscriptions')->where('confirmation_inscription', 1)
-        ->where("name", 'like', "%$resq->name%")->paginate(40);
-
-    return view('admin.dejainscris', ['inscript' => $get]);
-})->middleware(['auth']);
-
-Route::get('/list-labo', function () {
-    $get = DB::table('inscriptions')->where('labo', '!=', 'Aucun')->paginate(40);
-    $labo = DB::table('laboratoires')->get();
-    return view('admin.listelabo', ['inscript' => $get, 'labo' => $labo]);
-})->middleware(['auth']);
-
-Route::post('/list-labo', function () {
-    $get = DB::table('inscriptions')->where('labo', '=', $_POST['labo'])->paginate(40);
-    $labo = DB::table('laboratoires')->get();
-    return view('admin.listelabo', ['inscript' => $get, 'labo' => $labo]);
-})->middleware(['auth']);
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-Route::get('/list-delegue', function () {
-    $get = DB::table('delegues')->paginate(40);
-
-    return view('admin.delegue', ['inscript' => $get]);
-})->middleware(['auth']);
-Route::get('/qr-code', function () {
-
-    return view('badge.badge-participant');
-});
-
-Route::get('/scan', function () {
-
-    return view('badge.scan-qrcode');
-});
-
-Route::get('/liste-categorie', function(){
-    $liste = array();/*DB::table('inscriptions')
-                ->orderBy('name', 'asc')
-                ->get();*/
-    return view('admin.liste-par-categorie', ['inscription'=>$liste]);
-});
-
-Route::post('/liste-categorie', function(Request $request){
-
-    $liste = DB::table('inscriptions')
-                ->where('specialite', $request->speciality)
-                ->get();
-    return view('admin.liste-par-categorie', ['inscription'=>$liste]);
-});
-
-Route::get('/creer-badge/{idSpecialite}', function($idSpecialite){
-    $inscription = DB::table('inscriptions')
-            ->where('specialite', $idSpecialite)
-            ->get();
-/*!$pdf = PDF::loadView('badge.badge-participant', ['inscription'=>$inscription])
-            ->setPaper('a4', 'portrait');
-    return $pdf->stream();*/
-   return view('badge.badge-participant', ['inscription'=>$inscription]);
-});
-
-Route::get('/inscription-delegue', function () {
-    $get = DB::table('grades')->get();
-    $labos = DB::table('laboratoires')->get();
-    $specia = DB::table('specialites')->get();
-    $delegue = DB::table('delegues')->get();
-
-    return view('delegue', ['grades' => $get, 'specia' => $specia, 'labos' => $labos, 'delegue' => $delegue]);
-});
-
-Route::post('/save-delegue', function (Request $resq) {
-    $verifie = DB::table('delegues')
-        ->where('nom', $resq->nom)
-        ->where('email', $resq->email)
-        ->where('labo_id', $resq->labo_id)
-        ->first();
-    $nom = $_POST['nom'];
-    if (!empty($verifie)) {
-        if (session()->has('inscriptiondelegue')) {
-            session()->put('inscriptiondelegue', $nom . " vous avez déjà été enrgistré");
-            session()->put('color', "ff6600fa");
-        } else {
-            session()->put('inscriptiondelegue', $nom . " vous avez déjà été enrgistré");
-            session()->put('color', "ff6600fa");
-        }
-    } else {
-        //return $resq;
-        $inscription = InscriptionDelegue::create([
-            'titre' => $resq->titre,
-            'nom' => $resq->nom,
-            'email' => $resq->email,
-            'labo_id' => $resq->labo_id,
-            /*'stand'=>$_POST['stand'],
-            'symposium'=>$_POST['symposium'],
-            'publicite'=>$_POST['publicite'],
-            'specialiste'=>$_POST['specialiste'],
-            'medecin'=>$_POST['medecin'],
-            'infirmier'=>$_POST['infirmier'],
-            'etudiant'=>$_POST['etudiant'],*/
-
-
-        ]);
-
-        if (session()->has('inscriptiondelegue')) {
-            session()->put('inscriptiondelegue', $nom . " vos informations ont bien été enregistrées");
-            session()->put('color', "225500fa");
-        } else {
-            session()->put('inscriptiondelegue', $nom . " vos informations ont bien été enregistrées");
-            session()->put('color', "225500fa");
-        }
-
-
-    }
-
-    return back();
-});
-
-Route::get('/badge-delegue', function(){
-
-});
-Route::get('/service-annexe', function () {
-
-    return view('comite-organisation');
+Route::middleware('auth')->group(function () {
+    Route::controller(InscriptionController::class)->group(function () {
+        Route::get('/liste-pre-inscription', 'index')->name('liste.pre.inscription');
+        Route::get('/liste-inscription', 'listeInscription')->name('liste.inscription');
+        Route::get('/badge-non-imprime', 'badgeNonImprimer')->name('badge.non.imprime');
+        Route::get('/inscription', 'create')->name('inscription');
+        Route::post('/inscription', 'save');
+        Route::get('/confirmez-inscription/{id}', 'confirmezInscription')->name('confirmez.inscription');
+        Route::patch('/confirmez-inscription/{id}', 'saveConfirmezInscription');
+        Route::get('/update-inscription/{id}', 'upadeParticipant')->name('update.participant');
+        Route::patch('/update-inscription/{id}', 'saveUpadeParticipant');
+        Route::get('/excel-liste-inscription', 'listeExcelInscription')->name('excel.liste.inscription');
+        Route::get('/liste-presence-excel', 'listePresenceExcel')->name('liste.presence.excel');
+        Route::get('/liste-atelier-pre-inscription', 'atelierInscriptionScp')->name('liste.atelier.pre.inscription');
+        Route::get('/liste-atelier-inscription', 'listeAtelierInscription')->name('liste.atelier.inscription');
+        Route::get('/atelier-badge-non-imprime', 'AtelierNonImprimer')->name('atelier.badge.non.imprime');
+        Route::get('/confirm-inscription-atelier/{id}', 'confirmInscriptionAtelier')->name('confirm.inscription.atelier');
+    });
+    Route::controller(PresenceCongresController::class)->group(function () {
+        Route::get('/liste-presence-congres', 'index')->name('liste.presence.congres');
+        Route::get('/telecharger-liste-presence/{id}', 'telechargerListePresenceSession');
+        Route::get('/participant-presence', 'listePresence');
+        Route::get('/participant-non-inscrit-recu-gadget', 'participantNonInscritGadget');
+    });
+    Route::controller(ServiceRenduController::class)->group(function () {
+        Route::get('/ajouter-attestation-service-rendu/{id}', 'ajouterAttestationService')->name('ajouter.attestation.service.rendu');
+        Route::post('/ajouter-attestation-service-rendu/{id}', 'addAjouteAttestationService');
+        Route::get('/envoi-certificat-service-rendu/{id}', 'envoiCertificatServiceRendu');
+    });
+
+    Route::controller(AtelierAfaRespir::class)->group(function () {
+        Route::get('/liste-afa-respir-atelier-pre-inscription', 'atelierPreInscriptionAfaRespir')->name('liste.afa.respir.atelier.pre.inscription');
+        Route::get('/liste-afa-respir-atelier-inscription', 'listeAtelierInscriptionAfaRespir')->name('liste.afa.respir.atelier.inscription');
+        Route::get('/confirm-afa-respir-inscription/{id}', 'confirmationInscriptionAfa')->name('confirm.afa.respir.inscription');
+        Route::get('/afa-respir-badge-non-imprime', 'badgeNonImprimer')->name('afa.respir.badge.non.imprime');
+        Route::get('atelier-afa-respire-inscription', 'inscriptionAtelierAfa')->name('atelier.afa.respire.inscription');
+        Route::post('atelier-afa-respire-inscription', 'saveInscriptionAtelierAfa');
+        Route::get('export-liste-presence-afa-respir', 'listePresenceAfa');
+        Route::get('envoi-certificat-participation', 'envoiCertificatParticipation');
+    });
+
+
+
+    Route::controller(AbstractsController::class)->group(function () {
+        Route::get('/liste-abstract', 'create')->name('liste.abstracts');
+        Route::get('/liste-valide', 'abstractValide')->name('liste.abstracts.valide');
+        Route::get('/liste-conference', 'listeConference')->name('liste.conference');
+        Route::get('/liste-valide-conference', 'listeValideConference')->name('liste.valide.conference');
+        Route::get('/excel-abstract-export', 'exporterAbstractExcel');
+        Route::get('/abstract-pdf/{id}', 'abstractPdf')->name('abstract.pdf');
+        Route::get('/confirm-abstract/{id}', 'confirmAbstract');
+        Route::get('/envoyez-communication-email', 'envoyezCommunicationEmail');
+        Route::get('/envoyez-affiche-email', 'envoyezAfficheEmail');
+        Route::get('/confirm-poster/{id}', 'confirmPoster');
+        Route::get('/confirm-conference/{id}', 'confirmConference');
+        Route::get('/correction-oral/{id}', 'correctionOrale');
+        Route::get('/correction-poster/{id}', 'correctionPoster');
+        Route::get('/abstract-rejete/{id}', 'rejeterAbstract');
+        Route::get('/update-abstract/{id}', 'upadeParticipant')->name('update.abstract;');
+        Route::patch('/update-abstract/{id}', 'saveUpadeParticipant');
+        Route::get('/update-abstract/{id}', 'upadeAbstract')->name('update.abstract');
+        Route::patch('/update-abstract/{id}', 'saveUpadeAbstract');
+        Route::get('/ajouter-session', 'ajouterSession')->name('ajouter.session');
+        Route::post('/ajouter-session', 'saveSession');
+        Route::get('/update-session/{id}', 'updateSession')->name('update.session');
+        Route::post('/update-session/{id}', 'saveUpdateSession');
+        Route::get('/send-conference-certificat/{id}', 'sendConferenceCertificat')->name('send.conference.certificat');
+        Route::get('/send-certificat-communication/{id}', 'sendCertificatCommunication')->name('send.certificat.communication');
+        Route::get('/send-certificat-poster/{id}', 'sendCertificatPoster')->name('send.certificat.poster');
+    });
+
+    Route::controller(SendCertificatCongres::class)->group(function () {
+        Route::get('/send-congres-participation/{id}', 'sendCongresParticipate');
+        Route::get('/send-atelier-congres-participation/{id}', 'sendAtelierParticipate');
+        Route::get('/send-moderation-certificate/{id}', 'sendModeration');
+        Route::get('/send-certificat-all-participation', 'sendCertificatAllParticipation');
+        Route::get('/send-all-atelier-certificate', 'sendAtelierAllParticipate');
+        Route::get('/send-orale-all-certificate', 'sendOraleCertificate');
+        Route::get('/send-affiche-all-certificate', 'sendAfficheCertificate');
+        Route::get('/send-conference-all-certificate', 'sendConferenceCertificate');
+    });
+    Route::controller(WordController::class)->group(function () {
+        Route::get('/word-abstract/{id}', 'createWord')->name('word.abstracts');
+    });
+
+
+    Route::controller(BadgeController::class)->group(function () {
+        Route::get('/badge-participant', 'badgeParticipant');
+        Route::get('/badge-particulier', 'badgeParticulier');
+        Route::get('/imprimer-badge', 'impressionBadge');
+        Route::post('/badge-liste', 'addListeBage');
+        Route::get('/badge-personnel-appui', 'badgePersonnelAppui');
+    });
+
+
+
+
+    Route::controller(EnqueteSatisfactionController::class)->group(function () {
+        Route::get('/creer-titre', 'createTitle')->name('ajouter.titre');
+        Route::post('/creer-titre', 'saveTitle');
+        Route::get('/creer-question/{idTitre}', 'createQuestion')->name('ajouter.question');
+        Route::post('/creer-question/{idTitre}', 'saveQuestion');
+    });
+
+    Route::controller(HackathonController::class)->group(function () {
+        Route::get('/badge-hackathon', 'badgeHackathon');
+        Route::get('/certificat-hackathon', 'AttestationParticipation');
+    });
 });
 
 
 
-Route::post('/save-enregistrer-service', function (Request $request) {
-    /*session()->put('inscription', "Bien vouloir remplir tous les champs");
-    session()->put('color', "6cb6e7fa");*/
-    $service = DB::table('comite_organisations')
-        ->where('name', $request->name)
-        ->orWhere('email', $request->email)
-        ->first();
-    if (!empty($service)) {
-        session()->put('inscription', $request->name . " a déjà été enregistré");
-        session()->put('color', "ff6600fa");
-    } else {
-        $comite = ComiteOrganisation::create([
-            'titre'=>$request->titre,
-            'name'=>$request->name,
-            'prenom'=>$request->prenom,
-            'email'=>$request->email,
-            'service'=>$request->service,
-            'telephone'=>$request->telephone,
-        ]);
-        session()->put('inscription', $request->name." a bien été enregistré");
-        session()->put('color', "225500fa");
-    }
-    return back();
+Route::controller(BadgeController::class)->group(function () {
+    Route::get('/badge-participant', 'badgeParticipant');
+    Route::get('/badge-particulier', 'badgeParticulier');
+    Route::get('/imprimer-badge', 'impressionBadge');
+    Route::post('/badge-liste', 'addListeBage');
 });
-Route::post('/salle-stand', function (Request $request) {
-    $scan = ScanPresence::create([
-        'info_participant'=>$request->info_participant,
-        'salle'=>$request->salle,
-    ]);
-    return back();
+Route::controller(ScanController::class)->group(function () {
+    Route::get('/listes-sessions', 'listeSession')->name('liste.session');
+    Route::get('/stats-sessions', 'statSession')->name('stats.session');
+    Route::get('/scan-participant/{id}', 'scanSession')->name('liste.session');
+    Route::post('/save-scan', 'saveScan');
+    Route::get('/scan-atelier-afa-respir', 'scanAfaRespir');
+    Route::post('/save-participant-afa', 'saveParticipantAfa');
 });
 
+Route::controller(QuizController::class)->group(function () {
+    Route::get('/quiz-participant/{id}', 'create')->name('quiz.participant');
+    Route::post('/quiz-participant', 'store');
+    Route::get('/resultat-quiz', 'resultatQuiz')->name('resultat.quiz');
+});
+Route::controller(EnqueteSatisfactionController::class)->group(function () {
+    Route::get('/enquete-satisfaction-congres-saplf-scp/{id}', 'showEnquete')->name('enquete.satisfaction');
+    Route::post('/enquete-satisfaction-confres-saplf-scp/{id}', 'saveEnquete');
+    // Route::get('/creer-question/{idTitre}', 'createQuestion')->name('ajouter.question');
+    // Route::post('/creer-question/{idTitre}', 'saveQuestion');
+});
+
+
+
+
+Route::fallback(function () {
+    // ...
+    return view('error.error-404');
+});
+
+// Route::fallback(function () {
+//     // ...
+//     return view('error.error-default');
+// });
 
 require __DIR__ . '/auth.php';

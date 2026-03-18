@@ -1,88 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-email-sender>
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body"
+        style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #f4f5f6; width: 100%;"
+        width="100%" bgcolor="#f4f5f6">
+        <tr>
+            <td style="font-family: Helvetica, sans-serif; font-size: 16px; vertical-align: top;" valign="top">&nbsp;
+            </td>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Congrès societe Camerounaise de cardiologie</title>
+            <td class="container"
+                style="font-family: Helvetica, sans-serif; font-size: 16px; vertical-align: top; max-width: 600px; padding: 0; padding-top: 24px; width: 600px; margin: 0 auto;"
+                width="600" valign="top">
+                <div class="content"
+                    style="box-sizing: border-box; display: block; margin: 0 auto; max-width: 600px; padding: 0;">
 
-    <style type="text/css">
-        .inscription {
-            width: 100%;
+                    <!-- START CENTERED WHITE CONTAINER -->
+                    <span class="preheader"
+                        style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;">
+                    </span>
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="main"
+                        style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; background: #ffffff; border: 1px solid #eaebed; border-radius: 16px; width: 100%;"
+                        width="100%">
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+                        <!-- START MAIN CONTENT AREA -->
+                        <tr>
+                            <td class="wrapper"
+                                style="font-family: Helvetica, sans-serif; font-size: 16px; vertical-align: top; box-sizing: border-box; padding: 24px;"
+                                valign="top">
+                                <p>
+                                </p>
+                                <p
+                                    style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
+                                <h3> {{ $data['titre'] . ' ' . $data['name'] }} </h3>
+                                </p>
+                                <p
+                                    style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
+                                    {{ 'Nous confirmons votre inscription au 5' }} <sup>ème</sup> Congrès de la
+                                    <strong>SOCEDIAMN(Société Camerounaise d'Endocrinologie, Diabétologie, Métabolisme
+                                        et Nutrition)</strong> et
+                                    au 8 <sup>ème</sup>Congrès de la <strong>SFADE (Société Francophone Africaine de
+                                        Diabétologie et d’Endocrinologie)</strong>
+                                    qui aura lieu du <strong>16 au 18 Avril 2025</strong> à <strong> la Faculté de
+                                        Médecine et des
+                                        Sciences Biomédicales de l’Université de Yaoundé I, à Yaoundé</strong>
+                                    <br>
 
-        .inscription .form {
-            width: 100%;
-            padding-top: 2%;
-            padding-bottom: 2%;
-
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-
-        }
-
-        .inscription .form div {
-
-
-            width: 90%;
-
-
-        }
-
-        .inscription .form p {
-            font-size: 1.3em;
-            padding-right: 10%;
-        }
-
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        td,
-        th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-    </style>
-
-</head>
-
-<body>
-
-    <div class="inscription">
-        <div class="form">
-            <div>
-                <h2>{{ "Confirmation d'inscription" }}</h2>
-                <img src="https://socediamn.cm/img/socediamn.png" alt='inscription à 4ème Congrès de la SOCEDIAMN' />
+                                </p>
 
 
+                                <p
+                                    style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
+                                    {{ "Toutefois si vous souhaitez avoir une lettre d'invitation" }} <a
+                                        href="https://api.socediamn.org/lettre-invitation/{{ $data['id'] }}">Cliquez
+                                        ici (version française)</a>
+                                </p>
+                                <p
+                                    style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
+                                    {{ "Toutefois si vous souhaitez avoir une lettre d'invitation" }} <a
+                                        href="https://api.socediamn.org/lettre-english/{{ $data['id'] }}">Click
+                                        here (English version)</a>
+                                </p>
+                                <p
+                                    style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
+                                    <br>
+                                    Cordialement
+                                </p>
+                            </td>
+                        </tr>
 
-                <p>
-                    <a href="https://socediamn.cm/lettre-invitation/{{ $id }}">Cliquez ici pour télécharger
-                        votre lettre {{ "d'invitation" }}</a>
-                </p>
+                        <!-- END MAIN CONTENT AREA -->
+                    </table>
+
+                    <!-- START FOOTER -->
+                    <div class="footer" style="clear: both; padding-top: 24px; text-align: center; width: 100%;">
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0"
+                            style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;"
+                            width="100%">
+                            <tr>
+                                <td class="content-block"
+                                    style="font-family: Helvetica, sans-serif; vertical-align: top; color: #9a9ea6; font-size: 16px; text-align: center;"
+                                    valign="top" align="center">
+                                    <span class="apple-link"
+                                        style="color: #9a9ea6; font-size: 16px; text-align: center;"></span>
+                                    <br> <a href=""
+                                        style="text-decoration: underline; color: #9a9ea6; font-size: 16px; text-align: center;">
+                                        {{ "SOCEDIAMN & SFADE" }}</a>.
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                    <!-- END FOOTER -->
+
+                    <!-- END CENTERED WHITE CONTAINER -->
+                </div>
+            </td>
+            <td style="font-family: Helvetica, sans-serif; font-size: 16px; vertical-align: top;" valign="top">&nbsp;
+            </td>
+        </tr>
+    </table>
+</x-email-sender>
 
 
-
-            </div>
-
-        </div>
-    </div>
-</body>
-
-</html>

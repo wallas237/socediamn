@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Inscription;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,8 +17,8 @@ class ConfirmInscription extends Mailable
      *
      * @return void
      */
-    public $data = [];
-    public function __construct(array $d)
+    public $data;
+    public function __construct($d)
     {
         //
         $this->data = $d;
@@ -30,7 +31,7 @@ class ConfirmInscription extends Mailable
      */
     public function build()
     {
-        
-        return $this->view('email.confirmationinscription');
+
+        return $this->view('email.confirmationpaiement', ['data'=>$this->data]);
     }
 }
