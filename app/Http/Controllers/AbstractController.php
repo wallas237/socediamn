@@ -26,7 +26,7 @@ class AbstractController extends Controller
             'conclusion' => $request->conclusion,
             'email_correspondant' => $request->email_correspondant
         ]);
-        
+	info("message envoyé");        
         Mail::to($request->email_correspondant)->send(new AbstractEnvoye($absatract));
         return response()->json([
             'message' => 'Abstract enregistré avec succès',
@@ -35,3 +35,4 @@ class AbstractController extends Controller
 
     }
 }
+

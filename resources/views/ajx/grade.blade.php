@@ -1,3 +1,0 @@
-;{{$grade->id}}/{{$grade->titre}};
-
-

@@ -1,3 +1,0 @@
-;{{$deleg->id}}/{{$deleg->nom}};
-
-

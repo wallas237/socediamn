@@ -1,3 +1,0 @@
-;{{$spec->id}}/{{$spec->speciality}};
-
-

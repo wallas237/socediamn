@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:5173', 'https://socediamn.org'],
+    'allowed_origins' => ['https://www.socediamn.org', 'https://socediamn.org'],
 
     'allowed_origins_patterns' => [],
 
