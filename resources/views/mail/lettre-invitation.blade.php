@@ -33,7 +33,7 @@
                                 </p>
                                 <p
                                     style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
-                                    {{ 'Nous confirmons votre inscription au 5' }}<sup>ème</sup> Congrès de la
+                                    {{ '5' }}<sup>ème</sup> Congrès de la
                                     <strong>SOCEDIAMN(Société Camerounaise d'Endocrinologie, Diabétologie, Métabolisme
                                         et Nutrition)</strong> et
                                     au 8 <sup>ème</sup>Congrès de la <strong>SFADE (Société Francophone Africaine de
@@ -48,13 +48,13 @@
 
                                 <p
                                     style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
-                                    {{ "Toutefois si vous souhaitez avoir une lettre d'invitation" }} <a
+                                    {{ "" }} <a
                                         href="https://api.socediamn.org/lettre-invitation/{{ $data['id'] }}">Cliquez
                                         ici (version française)</a>
                                 </p>
                                 <p
                                     style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
-                                    {{ "Toutefois si vous souhaitez avoir une lettre d'invitation" }} <a
+                                    {{ "" }} <a
                                         href="https://api.socediamn.org/lettre-english/{{ $data['id'] }}">Click
                                         here (English version)</a>
                                 </p>

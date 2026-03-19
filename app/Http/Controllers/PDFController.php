@@ -106,7 +106,7 @@ class PDFController extends Controller
         $inscr = Inscription::find($id);
         
         $message = new LettreInvitation($inscr);
-        Mail::to("wallasbanezoue237@gmail.com")->send($message);
+        Mail::to($inscr->email)->send($message);
         return back()->with('status', "Lettre d'invitation envoyée avec succès!");
     }
 }
