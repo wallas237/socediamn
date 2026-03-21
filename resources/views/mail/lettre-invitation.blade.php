@@ -36,7 +36,7 @@
                                     {{ '5' }}<sup>ème</sup> Congrès de la
                                     <strong>SOCEDIAMN(Société Camerounaise d'Endocrinologie, Diabétologie, Métabolisme
                                         et Nutrition)</strong> et
-                                    au 8 <sup>ème</sup>Congrès de la <strong>SFADE (Société Francophone Africaine de
+                                     8 <sup>ème</sup>Congrès de la <strong>SFADE (Société Francophone Africaine de
                                         Diabétologie et d’Endocrinologie)</strong>
                                     qui aura lieu du <strong>16 au 18 Avril 2025</strong> à <strong> la Faculté de
                                         Médecine et des
