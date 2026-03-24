@@ -107,9 +107,9 @@
                     </p>
                     <br>
                     <h4>
-                        OrangeMoney : 691 208 941 <em> NOEL DESIREE MBANGO NGOH EDISARI EPSE EKOUTA </em>
+                        OrangeMoney : 679 539 583 <em> MENDANE MEKOBE FRANCINE </em>
                         <br><br>
-                        MobileMoney : 681 865 979 <em> NOEL DESIREE MBANGO NGOH EDISARI EPSE EKOUTA </em>
+                        MobileMoney : 696 778 459 <em> MENDANE MEKOBE FRANCINE </em>
 
                     </h4>
                     <p>
