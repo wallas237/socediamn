@@ -38,9 +38,7 @@
                                         et Nutrition)</strong> et
                                      8 <sup>ème</sup>Congrès de la <strong>SFADE (Société Francophone Africaine de
                                         Diabétologie et d’Endocrinologie)</strong>
-                                    qui aura lieu du <strong>16 au 18 Avril 2025</strong> à <strong> la Faculté de
-                                        Médecine et des
-                                        Sciences Biomédicales de l’Université de Yaoundé I, à Yaoundé</strong>
+                                    qui aura lieu du <strong>16 au 18 Avril 2025</strong> à <strong> l'Hôtel DJEUGA Palace de Yaoundé</strong>
                                     <br>
 
                                 </p>

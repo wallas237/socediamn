@@ -217,8 +217,7 @@
     <div class="droit">
         Au nom du Comité d’organisation, nous avons l’honneur de vous inviter à participer
         au Congrès de la Société Camerounaise d’Endocrinologie, Diabétologie, Maladies Métaboliques
-        et Nutrition (SOCEDIAMN), qui se tiendra du 16 au 18 avril 2026 à la Faculté de Médecine
-        et des Sciences Biomédicales de l’Université de Yaoundé I, à Yaoundé (Cameroun).
+        et Nutrition (SOCEDIAMN), qui se tiendra du 16 au 18 avril 2026 à l'hôtel DJEUGA Palace de Yaoundé (Cameroun).
         <br>
         <br>
         Ce congrès réunira des spécialistes nationaux et internationaux autour des avancées

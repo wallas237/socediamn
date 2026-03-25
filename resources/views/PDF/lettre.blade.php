@@ -230,7 +230,7 @@
          <img src="img/socediamn.png" alt="5ème congrès de la socediamn" id="filligrane" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; width: 60%;">
 
     <div class="droit">
-        On behalf of the Organizing Committee, we have the honor to invite you to participate in the Congress of the Cameroonian Society of Endocrinology, Diabetology, Metabolic Diseases and Nutrition (SOCEDIAMN), which will take place from April 16 to 18, 2026, at the Faculty of Medicine and Biomedical Sciences of the University of Yaoundé I, in Yaoundé, Cameroon.
+        On behalf of the Organizing Committee, we have the honor to invite you to participate in the Congress of the Cameroonian Society of Endocrinology, Diabetology, Metabolic Diseases and Nutrition (SOCEDIAMN), which will take place from April 16 to 18, 2026, at DJEUGA Palace Hotel of Yaoundé, Cameroon.
         <br>
         <br>
        This congress will bring together national and international specialists to discuss recent advances in the fields of endocrinology, diabetology, metabolic diseases, and nutrition.
