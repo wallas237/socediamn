@@ -107,9 +107,15 @@
                     </p>
                     <br>
                     <h4>
-                        OrangeMoney : 679 539 583 <em> MENDANE MEKOBE FRANCINE </em>
+                        MobileMoney : 679 539 583 <em> MENDANE MEKOBE FRANCINE </em>
                         <br><br>
-                        MobileMoney : 696 778 459 <em> MENDANE MEKOBE FRANCINE </em>
+                        OrangeMoney : 696 778 459 <em> MENDANE MEKOBE FRANCINE </em>
+
+                    </h4>
+                     <h4>
+                        MobileMoney : 682 426 849 <em> PAULE DIANE PAGUI EPSE BAMA  </em>
+                        <br><br>
+                        OrangeMoney : 659 299 493 <em> PAULE DIANE PAGUI EPSE BAMA </em>
 
                     </h4>
                     <p>
