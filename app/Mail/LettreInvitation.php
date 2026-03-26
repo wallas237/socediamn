@@ -3,7 +3,7 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-
+use Illuminate\Mail\Attachment;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -53,6 +53,10 @@ class LettreInvitation extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+            Attachment::fromPath(public_path('final_programme_5_congrès_SOCEDIAMN_2026 _avec_auteurs.pdf'))
+                ->as('final_programme_5_congrès_SOCEDIAMN_2026 _avec_auteurs.pdf')
+                ->withMime('application/pdf'),
+        ];
     }
 }
