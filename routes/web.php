@@ -37,17 +37,11 @@ use Symfony\Polyfill\Intl\Idn\Info;
 
 Route::get('/mail-excuse', function () {
 
-    //$valides = ComOraleValide::all();
-    $i = 0;
     $inscription = Inscription::all();
-    $i = 0;
     foreach ($inscription as $v) {
-       
-           
-            $message = (new InfoPaiement());
-            Mail::to($v->email)->send($message);
-            exit();
-        
+
+        $message = (new InfoPaiement());
+        Mail::to($v->email)->send($message);
     }
 
 
