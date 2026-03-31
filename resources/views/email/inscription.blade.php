@@ -69,15 +69,15 @@
             <div>
                 <div style="display: flex;">
                     <table>
-                            <thead>
-                                <tr>
-                                    <th><img src="https://api.socediamn.org/img/socediamn.png"
-                                            alt='5ème Congrès de la SOCEDIAMN et 8ème Congrès de la SFADE' /></th>
-                                    <th><img src="https://api.socediamn.org/img/sfade.jpg"
-                                            alt='5ème Congrès de la SOCEDIAMN et 8ème Congrès de la SFADE' /></th>
-                                </tr>
-                            </thead>
-                        </table>
+                        <thead>
+                            <tr>
+                                <th><img src="https://api.socediamn.org/img/socediamn.png"
+                                        alt='5ème Congrès de la SOCEDIAMN et 8ème Congrès de la SFADE' /></th>
+                                <th><img src="https://api.socediamn.org/img/sfade.jpg"
+                                        alt='5ème Congrès de la SOCEDIAMN et 8ème Congrès de la SFADE' /></th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
 
                 {{-- <h3>{{ $data['name'] }}, {{ $data['id'] }}</h3> --}}
@@ -112,8 +112,8 @@
                         OrangeMoney : 696 778 459 <em> MENDANE MEKOBE FRANCINE </em>
 
                     </h4>
-                     <h4>
-                        MobileMoney : 682 426 849 <em> PAULE DIANE PAGUI EPSE BAMA  </em>
+                    <h4>
+                        MobileMoney : 682 426 849 <em> PAULE DIANE PAGUI EPSE BAMA </em>
                         <br><br>
                         OrangeMoney : 659 299 493 <em> PAULE DIANE PAGUI EPSE BAMA </em>
 
@@ -122,7 +122,12 @@
                         Veuillez contacter un des numéros suivant pour confirmer votre paiement
                     </p>
                     <h4>
-                        00237 682 426 849 / 659 299 493
+
+                        00237 682 426 849 Mme BAMA Diane<br>
+                        00237 698 711 769 M. BANEZOUE Lionel
+
+
+                    </h4>
 
 
                     </h4>

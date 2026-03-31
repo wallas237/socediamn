@@ -154,7 +154,7 @@ class WordController extends Controller
 
         // Sauvegarder le fichier dans un chemin spécifique
         //$filePath = public_path('Documents/mon_document.docx');
-        $filePath = public_path($abstract->name . '-comm.docx');
+        $filePath = public_path($abstract->name . '.docx');
         //$filePath = public_path('Documents/mon_document.docx');
         $objWriter = IOFactory::createWriter($phpWord, 'Word2007');
         $objWriter->save($filePath);

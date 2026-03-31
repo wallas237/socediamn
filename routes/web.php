@@ -19,6 +19,7 @@ use App\Http\Controllers\ServiceRenduController;
 use App\Http\Controllers\WordController;
 use App\Mail\AbstractRejete;
 use App\Mail\EnqueteSatisfaction;
+use App\Mail\InfoPaiement;
 use App\Mail\NoReply;
 use App\Models\AtelierSaplfScp;
 use App\Models\ComiteOrganisation;
@@ -32,8 +33,26 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Symfony\Polyfill\Intl\Idn\Info;
+
+Route::get('/mail-excuse', function () {
+
+    //$valides = ComOraleValide::all();
+    $i = 0;
+    $inscription = Inscription::all();
+    $i = 0;
+    foreach ($inscription as $v) {
+       
+           
+            $message = (new InfoPaiement());
+            Mail::to($v->email)->send($message);
+            exit();
+        
+    }
 
 
+    return "OK mail";
+});
 
 Route::get('/', function () {
     //return strlen("Tuberculose pharmaco sensible : attitudes chez le personnel de santé en république du");
