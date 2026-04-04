@@ -10,6 +10,7 @@ class communicationSalle extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    
 
     public function recupereScan():HasMany
     {
