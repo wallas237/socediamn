@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('communication_salles', function (Blueprint $table) {
+        Schema::create('ajouter_detail_sessions', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->text('libelle_session')->nullable();
+            $table->string('libelle_detail_session');
             $table->string('libelle_salle');
-            $table->string('moderateur');
-            $table->dateTime('date_heure');
-            $table->dateTime('date_fin');
-            $table->boolean('status')->default(0);
+            $table->string('orateur', 255);
+            $table->unsignedBigInteger('communication_salle_id');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('communication_salles');
+        Schema::dropIfExists('ajouter_detail_sessions');
     }
 };

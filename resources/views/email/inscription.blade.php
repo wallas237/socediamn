@@ -140,7 +140,6 @@
                             <thead>
                                 <tr>
                                     <th>Catégories</th>
-                                    <th>Jusqu’au 30/03/26</th>
                                     <th>Du 01/04/26 au 15/04/26</th>
                                     <th>Sur site : 16-18/04/26</th>
                                 </tr>

@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>SOCEDIAMN & SFADE</title>
+    <title>SOCEDIAMN & SFADE 2026</title>
     <style media="all" type="text/css">
         /* -------------------------------------
     GLOBAL RESETS
@@ -333,7 +333,7 @@
                                 <p>Vous aviez participé au 4ème  Congrès scientifique de la SOCEDIAMN et nous gardons un excellent souvenir de cette édition grâce à l’implication et à la richesse des échanges avec vous.</p>
                                 <p>C’est donc avec grand plaisir que nous vous informons que nous préparons actuellement la prochaine édition du congrès, qui se tiendra du 16 au 18 Avril 2026, à Yaoundé.</p>
                                 <p>Cette nouvelle édition sera consacrée au thème «  Nouvelles Approches en Endocrinologie et Intelligence Artificielle » et promet, une fois encore, de beaux moments de partage scientifique, de discussions enrichissantes et de rencontres entre chercheurs et professionnels.</p>
-                                <p>Nous serions ravis de vous compter à nouveau parmi nous. Très prochainement, pour plus de détails concernant les dates clés, l’appel à communications et les modalités de participation rendez-vous sur le site</p>
+                                <p>Nous serions ravis de vous compter à nouveau parmi nous. Très prochainement</p>
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0"
                                     class="btn btn-primary">
                                     <tbody>

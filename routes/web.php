@@ -13,6 +13,7 @@ use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PresenceCongresController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\ScanController;
 use App\Http\Controllers\SendCertificatCongres;
 use App\Http\Controllers\ServiceRenduController;
@@ -47,6 +48,23 @@ Route::get('/mail-excuse', function () {
 
     return "OK mail";
 });
+
+Route::get('/mail-relance', function () {
+    $i=0;
+    $inscription = Inscription::where('id', '>', 283)->get();
+    foreach ($inscription as $v) {
+        
+            $message = (new NoReply());
+             Mail::to($v->email)->send($message);
+        
+        
+    }
+
+
+    return "OK mail";
+});
+
+
 
 Route::get('/', function () {
     //return strlen("Tuberculose pharmaco sensible : attitudes chez le personnel de santé en république du");
@@ -303,6 +321,10 @@ Route::middleware('auth')->group(function () {
         Route::post('/ajouter-session', 'saveSession');
         Route::get('/update-session/{id}', 'updateSession')->name('update.session');
         Route::post('/update-session/{id}', 'saveUpdateSession');
+         Route::get('/ajouter-details/{idSession}', 'ajouterDetails')->name('ajouter.details');
+        Route::post('/ajouter-details/{idSession}', 'saveDetails');
+        Route::get('/update-details/{idDetails}', 'updateDetails')->name('update.details');
+        Route::post('/update-details/{idDetails}', 'saveUpdateDetails');
         Route::get('/send-conference-certificat/{id}', 'sendConferenceCertificat')->name('send.conference.certificat');
         Route::get('/send-certificat-communication/{id}', 'sendCertificatCommunication')->name('send.certificat.communication');
         Route::get('/send-certificat-poster/{id}', 'sendCertificatPoster')->name('send.certificat.poster');
@@ -378,6 +400,24 @@ Route::controller(EnqueteSatisfactionController::class)->group(function () {
 
 
 
+// ═══ ROUTES RÉCLAMATION ═══════════════════════════════════════════════════════
+// Permet à tous les utilisateurs de soumettre une réclamation via un formulaire
+// Route::controller(ReclamationController::class)->group(function () {
+//     // Affiche le formulaire de réclamation
+//     Route::get('/reclamation', 'create')->name('reclamation.create');
+    
+//     // Traite la soumission du formulaire
+//     Route::post('/reclamation', 'store')->name('reclamation.store');
+    
+//     // Admin: Voir la liste des réclamations (protégé par middleware auth)
+//     Route::get('/admin/reclamations', 'index')->middleware('auth')->name('reclamations.index');
+    
+//     // Admin: Voir les détails d'une réclamation
+//     Route::get('/admin/reclamations/{id}', 'show')->middleware('auth')->name('reclamations.show');
+    
+//     // Admin: Mettre à jour le statut d'une réclamation
+//     Route::patch('/admin/reclamations/{id}/status', 'updateStatus')->middleware('auth')->name('reclamations.updateStatus');
+// });
 
 Route::fallback(function () {
     // ...

@@ -205,9 +205,12 @@ class AbstractsController extends Controller
             ->first();
         if (empty($existe)) {
             $communicationSalle = communicationSalle::create([
+                'type'=>$request->type_name,
                 'libelle_session' => $request->libelle_session,
                 'date_heure' => $request->date_heure,
-                'libelle_salle' => $request->libelle_salle
+                'libelle_salle' => $request->libelle_salle,
+                'date_fin' => $request->date_fin,
+                'moderateur' => $request->moderateur
             ]);
         }
 
@@ -237,13 +240,63 @@ class AbstractsController extends Controller
 
         if ($verification > 0) {
             $communicationSalle = communicationSalle::where('id', $id)->update([
+                'type'=>$request->type_name,
                 'libelle_session' => $request->libelle_session,
                 'date_heure' => $request->date_heure,
-                'libelle_salle' => $request->libelle_salle
+                'libelle_salle' => $request->libelle_salle,
+                'date_fin' => $request->date_fin,
+                'moderateur' => $request->moderateur
             ]);
         }
 
         return back();
+    }
+
+    function ajouterDetails($idSession)
+    {
+
+        return view('abstracts.ajouter-details-session', ['idSession' => $idSession]);
+    }
+
+    function saveDetails(Request $request, $idSession)
+    {
+        $existe = DB::table('ajouter_detail_sessions')
+            ->where('libelle_detail_session', $request->libelle_detail_session)
+            ->where('communication_salle_id', $request->communication_salle_id)
+            ->first();
+        if(empty($existe)){
+            $details = DB::table('ajouter_detail_sessions')->insert([
+                'libelle_detail_session' => $request->libelle_detail_session,
+                'orateur' => $request->orateur,
+                'libelle_salle' => $request->libelle_salle,
+                'communication_salle_id' => $request->communication_salle_id
+            ]);
+        }
+
+        return back();
+        
+    }
+
+    
+    function updateDetails($idDetails)
+    {
+
+        return view('abstracts.update-details-session', ['idDetails' => $idDetails]);
+    }
+
+    function saveUpdateDetails(Request $request, $idDetails)
+    {
+       
+            $details = DB::table('ajouter_detail_sessions')->where('id', $idDetails)->update([
+                'libelle_detail_session' => $request->libelle_detail_session,
+                'orateur' => $request->orateur,
+                'libelle_salle' => $request->libelle_salle,
+                'communication_salle_id' => $request->communication_salle_id
+            ]);
+        
+
+        return back();
+        
     }
 
     function sendConferenceCertificat($id)

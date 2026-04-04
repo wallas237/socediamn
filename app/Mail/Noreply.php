@@ -17,10 +17,10 @@ class NoReply extends Mailable
     /**
      * Create a new message instance.
      */
-    public $data;
-    public function __construct($data)
+   
+    public function __construct()
     {
-        $this->data = $data;
+        
     }
 
     /**
@@ -29,7 +29,7 @@ class NoReply extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: "Correction d'information - Veuillez ignorer nos précédents emails",
+            subject: "Rappel du 5ème Congrès de la SOCEDIAMN & 8ème Congrès SFADE - 16 au 18 Avril 2026",
         );
     }
 
@@ -38,12 +38,10 @@ class NoReply extends Mailable
      */
     public function content(): Content
     {
-        $civilite = Abstracts::where('email', $this->data->email)->first();
+        
         return new Content(
-            view: 'email.abstract.excuse-mail',
-            with: [
-                'data'=>$civilite,
-            ]
+            view: 'mail.noreply',
+            
         );
     }
 
