@@ -148,32 +148,30 @@
                                 <tr>
                                     @if ($data['specialite'] == 1)
                                         <td>Spécialistes non-membres de la SOCEDIAMN</td>
-                                        <td>50 000 XAF</td>
+                                        
                                         <td>60 000 XAF</td>
                                         <td>75 000 XAF</td>
                                     @elseif($data['specialite'] == 8)
                                         <td>Spécialistes membres de la SOCEDIAMN</td>
-                                        <td>35 000 XAF</td>
                                         <td>45 000 XAF</td>
                                         <td>50 000 XAF</td>
                                     @elseif($data['specialite'] == 2)
                                         <td>Résidents Internes</td>
-                                        <td>30 000 XAF</td>
+                                    
                                         <td>35 000 XAF</td>
                                         <td>40 000 XAF</td>
                                     @elseif($data['specialite'] == 3)
                                         <td>Médecins généralistes</td>
-                                        <td>10 000 XAF</td>
+                                        
                                         <td>15 000 XAF</td>
                                         <td>20 000 XAF</td>
                                     @elseif($data['specialite'] == 4)
                                         <td>Infirmiers / Diététiciens / Nutritionnistes</td>
-                                        <td>5 000 XAF</td>
+                                        
                                         <td>10 000 XAF</td>
                                         <td>15 000 XAF</td>
                                     @elseif($data['specialite'] == 6)
                                         <td>Participants hors Afrique</td>
-                                        <td>75 000 XAF</td>
                                         <td>85 000 XAF</td>
                                         <td>100 000 XAF</td>
                                     @else
