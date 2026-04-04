@@ -3,9 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class CommunicationSalle extends ResourceCollection
+class CommunicationSalle extends JsonResource
 {
     /**
      * Transform the resource collection into an array.
@@ -14,20 +14,19 @@ class CommunicationSalle extends ResourceCollection
      */
     public function toArray(Request $request): array
     {
-        return [
-            'data' => $this->collection->map(function ($item) {
+       
                 return [
-                    'id' => $item->id,
-                    'type' => $item->type,
-                    'libelle_session' => $item->libelle_session,
-                    'date_heure' => $item->date_heure,
-                    'date_fin' => $item->date_fin,
-                    'status' => $item->status,
-                    'libelle_salle' => $item->libelle_salle,
-                    'moderateur' => $item->moderateur,
+                    'id' => $this->id,
+                    'type' => $this->type,
+                    'libelle_session' => $this->libelle_session,
+                    'date_heure' => $this->date_heure,
+                    'date_fin' => $this->date_fin,
+                    'status' => $this->status,
+                    'libelle_salle' => $this->libelle_salle,
+                    'moderateur' => $this->moderateur,
                 ];
-            }),
-        ];
+            
+        
         //parent::toArray($request);
     }
 }
