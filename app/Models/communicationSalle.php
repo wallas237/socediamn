@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class communicationSalle extends Model
+class CommunicationSalle extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    
+
 
     public function recupereScan():HasMany
     {

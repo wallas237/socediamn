@@ -15,7 +15,7 @@ use App\Mail\CorrectionPoster;
 use App\Mail\EnvoiCertificatCommunication;
 use App\Mail\EnvoiConferenceCertificat;
 use App\Mail\EnvoieCommunicationAffiche;
-use App\Models\communicationSalle;
+use App\Models\CommunicationSalle;
 use App\Models\ComOraleValide;
 use App\Models\PosterValide;
 use Illuminate\Support\Facades\DB;
@@ -204,7 +204,7 @@ class AbstractsController extends Controller
             ->where('date_heure', $request->date_heure)
             ->first();
         if (empty($existe)) {
-            $communicationSalle = communicationSalle::create([
+            $CommunicationSalle = CommunicationSalle::create([
                 'type'=>$request->type_name,
                 'libelle_session' => $request->libelle_session,
                 'date_heure' => $request->date_heure,
@@ -239,7 +239,7 @@ class AbstractsController extends Controller
         }
 
         if ($verification > 0) {
-            $communicationSalle = communicationSalle::where('id', $id)->update([
+            $CommunicationSalle = CommunicationSalle::where('id', $id)->update([
                 'type'=>$request->type_name,
                 'libelle_session' => $request->libelle_session,
                 'date_heure' => $request->date_heure,
