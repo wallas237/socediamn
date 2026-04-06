@@ -22,6 +22,7 @@ use App\Mail\AbstractRejete;
 use App\Mail\EnqueteSatisfaction;
 use App\Mail\InfoPaiement;
 use App\Mail\NoReply;
+use App\Mail\PreInscription;
 use App\Models\AtelierSaplfScp;
 use App\Models\ComiteOrganisation;
 use App\Models\ComOraleValide;
@@ -48,6 +49,17 @@ Route::get('/mail-excuse', function () {
 
     return "OK mail";
 });
+
+Route::get('/mail-preinscription/{id}', function ($id) {
+
+    $inscription = Inscription::where('id',  $id)->first();
+     $nom = $inscription->civilite . " " . $inscription->first_name;
+            $alert = ['id' => $inscription->id, 'email' => $inscription->email, 'charge' => $inscription->charge, 'name' => $nom, 'labo' => $inscription->laboratoire, 'specialite' => $inscription->participant_category];
+
+            Mail::to($alert['email'])->send(new PreInscription($alert));
+    return back();
+});
+
 
 Route::get('/mail-relance', function () {
     $i=0;
