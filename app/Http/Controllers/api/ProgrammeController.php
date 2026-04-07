@@ -21,4 +21,10 @@ class ProgrammeController extends Controller
         }   
         return RessourceAjouterDetailSessions::collection($data);
     }
+
+    function allIntevenants(){
+
+        $all = AjouterDetailSessions::select('orateur')->distinct()->get();
+        return json_encode($all);
+    }
 }

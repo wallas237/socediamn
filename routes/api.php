@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(ProgrammeController::class)->group(function () {
     Route::get('get-programme', 'getAllsession')->middleware('throttle:api');
     Route::get('get-details-programme/{communicationSalleId}', 'getDetailProgramme')->middleware('throttle:api');
-    // Route::get('get-all-labo', 'allLabo')->middleware('throttle:api');
+    Route::get('get-intervenants', 'allIntevenants')->middleware('throttle:api');
 
 });
 
