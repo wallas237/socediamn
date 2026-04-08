@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AbstractController;
 use App\Http\Controllers\api\InscriptionController;
+use App\Http\Controllers\api\LivreAbstractController;
 use App\Http\Controllers\api\ParametreController;
 use App\Http\Controllers\api\ProgrammeController;
 use App\Http\Controllers\ReclamationController;
@@ -18,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::controller(LivreAbstractController::class)->group(function(){
+    Route::get('get-image-abstract', 'getImageAbstract');
+});
 
 Route::controller(ProgrammeController::class)->group(function () {
     Route::get('get-programme', 'getAllsession')->middleware('throttle:api');

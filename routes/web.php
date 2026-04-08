@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\AbstractsController;
+use App\Http\Controllers\api\LivreAbstractController;
 use App\Http\Controllers\AtelierAfaRespir;
 use App\Http\Controllers\BadgeAfaRespirController;
 use App\Http\Controllers\BadgeAtelierSaplfScp;
@@ -36,6 +37,10 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Symfony\Polyfill\Intl\Idn\Info;
+
+Route::controller(LivreAbstractController::class)->group(function(){
+    Route::get('/convert-pdf-to-image', 'convertirPdfEnImage');
+});
 
 Route::get('/mail-excuse', function () {
 
