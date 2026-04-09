@@ -25,10 +25,13 @@ class LivreAbstractController extends Controller
         $url = "https://api.socediamn.org/";
         //$urllocal = "http://10.0.2.2:8000/";
         $images = Storage::disk('public')->files('pagesabstract');
+        $verifier = natsort($images);
         $allImage = [];
         foreach($images as $image){
            array_push($allImage, "$url".$image);
         }
+        
+       
         return response()->json([
             'total' => count($images),
             'images' => $allImage,
