@@ -25,6 +25,7 @@ class RessourceCommunicationSalle extends JsonResource
             'status' => $this->status,
             'libelle_salle' => $this->libelle_salle,
             'moderateur' => $this->moderateur,
+            'encours'=>$this->encours
         ];
     }
 }
