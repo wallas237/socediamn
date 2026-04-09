@@ -15,11 +15,11 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    'paths' => ['api/*', 'pagesabstract/*'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['https://www.socediamn.org', 'https://socediamn.org', 'https://pwa.socediamn.org'],
+    'allowed_origins' => ['https://www.socediamn.org', 'https://socediamn.org', 'https://pwa.socediamn.org', 'https://pwa.socediamn.org/'],
 
     'allowed_origins_patterns' => [],
 

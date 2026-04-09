@@ -2,7 +2,16 @@
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
     </IfModule>
-
+    <IfModule mod_headers.c>
+       # Autorise spécifiquement ta PWA
+    	Header set Access-Control-Allow-Origin "https://pwa.socediamn.org"
+    
+    # Autorise les méthodes nécessaires
+    	Header set Access-Control-Allow-Methods "GET, OPTIONS"
+    
+    # Autorise les headers si besoin
+    	Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+    </IfModule>
     RewriteEngine On
 
     # Handle Authorization Header
