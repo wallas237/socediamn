@@ -155,6 +155,21 @@
                                                         Session
                                                     </button>
                                                 </a>
+                                                @if ($v->encours == 0)
+                                                    <a class="dropdown-item"
+                                                        href="/activer-session/{{ $v->id }}">
+                                                        <button class="btn btn-success p-2">
+                                                            Activer
+                                                        </button>
+                                                    </a>
+                                                @else
+                                                    <a class="dropdown-item"
+                                                        href="/desactiver-session/{{ $v->id }}">
+                                                        <button class="btn btn-danger p-2">
+                                                            Desactiver
+                                                        </button>
+                                                    </a>
+                                                @endif
 
 
                                             </div>

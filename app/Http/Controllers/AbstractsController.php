@@ -218,6 +218,22 @@ class AbstractsController extends Controller
         return back();
     }
 
+    function activerSession($idSession){
+        $communication = CommunicationSalle::where('id', $idSession)
+            ->update([
+                'encours'=>1
+            ]);
+        return back();
+    }
+
+    function desactiverSession($idSession){
+        $communication = CommunicationSalle::where('id', $idSession)
+            ->update([
+                'encours'=>0
+            ]);
+        return back();
+    }
+
     function updateSession($id)
     {
         return view('abstracts.modifier-session', ['id' => $id]);

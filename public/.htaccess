@@ -2,18 +2,19 @@
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
     </IfModule>
-    #<IfModule mod_headers.c>
-       # Autorise spécifiquement ta PWA
-    	#Header set Access-Control-Allow-Origin "https://pwa.socediamn.org"
-
-        # Autorise spécifiquement ta api
-    	#Header set Access-Control-Allow-Origin "https://api.socediamn.org"
-        # Autorise les méthodes nécessaires
-    	#Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
-    
-        # Autorise les headers si besoin
-    	#Header set Access-Control-Allow-Headers "Content-Type, Authorization"
-    #</IfModule>
+    <IfModule mod_headers.c>
+        # On vérifie si l'origine qui appelle est soit ta PWA, soit ton autre sous-domaine
+        SetEnvIf Origin "https://pwa.socediamn.org" ALLOWED_ORIGIN=$0
+        SetEnvIf Origin "https://api.socediamn.org" ALLOWED_ORIGIN=$0
+        # Ajoute d'autres lignes SetEnvIf si tu as d'autres sous-domaines
+        
+        # On applique l'en-tête uniquement si l'origine correspond à l'une des deux
+        Header set Access-Control-Allow-Origin %{ALLOWED_ORIGIN}e env=ALLOWED_ORIGIN
+        
+        # Optionnel : Autoriser les méthodes et headers
+        Header set Access-Control-Allow-Methods "GET, POST, OPTIONS, PUT, DELETE"
+        Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    </IfModule>
     RewriteEngine On
 
     # Handle Authorization Header

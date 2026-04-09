@@ -338,8 +338,10 @@ Route::middleware('auth')->group(function () {
         Route::post('/ajouter-session', 'saveSession');
         Route::get('/update-session/{id}', 'updateSession')->name('update.session');
         Route::post('/update-session/{id}', 'saveUpdateSession');
-         Route::get('/ajouter-details/{idSession}', 'ajouterDetails')->name('ajouter.details');
+        Route::get('/ajouter-details/{idSession}', 'ajouterDetails')->name('ajouter.details');
         Route::post('/ajouter-details/{idSession}', 'saveDetails');
+        Route::get('/activer-session/{idSession}', 'activerSession')->name('activer.session');
+        Route::get('/desactiver-session/{idSession}', 'desactiverSession')->name('desactiver.session');
         Route::get('/update-details/{idDetails}', 'updateDetails')->name('update.details');
         Route::post('/update-details/{idDetails}', 'saveUpdateDetails');
         Route::get('/send-conference-certificat/{id}', 'sendConferenceCertificat')->name('send.conference.certificat');
