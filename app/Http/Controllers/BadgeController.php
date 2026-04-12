@@ -53,7 +53,7 @@ class BadgeController extends Controller
                 try {
                     $content = $name; // Remplacez par votre contenu
                     $name = mb_convert_encoding($content, 'UTF-8', 'ISO-8859-1');
-                    QrCode::size(100)
+                    QrCode::size(90)
                         // ->merge('/public/img/scc-bg.svg')
                         //->style('dot')
                         ->color(40, 40, 40)
@@ -118,7 +118,7 @@ class BadgeController extends Controller
             try {
                 $content = $name; // Remplacez par votre contenu
                 $name = mb_convert_encoding($content, 'UTF-8', 'ISO-8859-1');
-                QrCode::size(100)
+                QrCode::size(90)
                     // ->merge('/public/img/scc-bg.svg')
                     //->style('dot')
                     ->color(40, 40, 40)

@@ -49,7 +49,7 @@
                                     <th scope="col">Email Adress</th>
                                     <th scope="col">Phone</th>
                                     <th scope="col">Certificat</th>
-                                    <th scope="col">Confirm</th>
+                                   
 
                                 </tr>
                             </thead>
@@ -63,7 +63,7 @@
                                     <th scope="col">Email Adress</th>
                                     <th scope="col">Phone</th>
                                     <th scope="col">Certificat</th>
-                                    <th scope="col">Confirm</th>
+                                   
 
                                 </tr>
                             </tfoot>
@@ -74,7 +74,10 @@
                                 @endphp
                                 @foreach ($inscrit as $v)
                                     <tr>
-                                        <th scope="row">{{ $i }}</th>
+                                        <td>
+                                            <input type="checkbox" name="badge" id="{{ $v->id }}" />
+                                        </td>
+
                                         <th scope="row">{{ $v->titre . ' ' . $v->name }}</th>
                                         <td>{{ $v->prenom }}</td>
                                         <td>
@@ -215,10 +218,7 @@
 
 
                                         </td>
-                                        <td>
-                                            <input type="checkbox" name="badge" id="{{ $v->id }}" />
-                                        </td>
-
+                                        
                                     </tr>
 
                                     </tr>

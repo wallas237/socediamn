@@ -25,7 +25,7 @@
             height: 560px;
 
             */
-            width: 380px;
+            width: 385px;
             height: 545px;
 
         }
@@ -36,7 +36,7 @@
             /*width: 380px;
             height: 536px;*/
             z-index: 0;
-            width: 380px;
+            width: 385px;
             height: 545px;
         }
 
@@ -96,12 +96,13 @@
         .bg-1 {}
 
         .badge-item {
-            border: 4px solid rgba(44, 43, 43, 0.646);
+            border-bottom: 2px solid rgba(44, 43, 43, 0.646);
 
         }
 
         .ville {
-            color: rgba(14, 199, 14, 0.726) !important;
+            color: #0c1c48 !important;
+            font-size: 2em;
         }
 
         .libelle {
@@ -117,39 +118,42 @@
         // $liste = DB::table('badge_listes')->get();
         $i = 1;
         $compteurDiv = 0;
-        $imageBadge = 'assets/images/badges/badge.png';
+        $imageBadge = 'img/congressiste.png';
     @endphp
     <div class="container">
         @foreach ($data['participants'] as $participant)
             @php
 
-                $verifierSiOrateur = DB::table('abstracts')
+                $verifierSiOrateur = DB::table('com_orale_valides')
                     ->where('email', trim($participant->email))
                     ->first();
-                $grades = DB::table('grades')->where('id', $participant->grade)->first();
-                $grade = !empty($grades) ? $grades->titre : 'VISITEUR';
-                $libelle = 'PARTICIPANT';
-                $ville = $participant->ville . '-' . $participant->pays;
-
-                if ($participant->specialite == 9) {
-                    $libelle = 'CONFERENCIER';
-                } elseif (!empty($verifierSiOrateur)) {
-                    $verifierConference = DB::table('abstracts')
-                        ->where('email', trim($participant->email))
-                        ->where('type_abstract', 'Conférence')
-                        ->where('confirmation_abstract', 1)
-                        ->first();
-                    if ($verifierConference) {
-                        $libelle = 'CONFERENCIER';
-                    } else {
-                        $verifierOrale = DB::table('com_orale_valides')
-                            ->where('email', trim($participant->email))
-                            ->first();
-                        if (!empty($verifierOrale)) {
-                            $libelle = 'ORATEUR';
-                        }
-                    }
+                if(!empty($verifierSiOrateur)){
+                    $imageBadge = 'img/speaker.png';
                 }
+                // $grades = DB::table('grades')->where('id', $participant->grade)->first();
+                // $grade = !empty($grades) ? $grades->titre : 'VISITEUR';
+                // $libelle = 'PARTICIPANT';
+                $ville = $participant->pays;
+
+                // if ($participant->specialite == 9) {
+                //     $libelle = 'CONFERENCIER';
+                // } elseif (!empty($verifierSiOrateur)) {
+                //     $verifierConference = DB::table('abstracts')
+                //         ->where('email', trim($participant->email))
+                //         ->where('type_abstract', 'Conférence')
+                //         ->where('confirmation_abstract', 1)
+                //         ->first();
+                //     if ($verifierConference) {
+                //         $libelle = 'CONFERENCIER';
+                //     } else {
+                //         $verifierOrale = DB::table('com_orale_valides')
+                //             ->where('email', trim($participant->email))
+                //             ->first();
+                //         if (!empty($verifierOrale)) {
+                //             $libelle = 'ORATEUR';
+                //         }
+                //     }
+                // }
 
                 $name = $participant->titre . ' ' . mb_strtoupper($participant->name);
                 $nbreLettre = strlen($name);
@@ -182,27 +186,27 @@
                         $lienImage = 'qrcode/' . $participant->id . '_pa.svg';
 
                     @endphp
-                    <h1 style="top: 62%;">{{ $name }}</h1>
+                    <h1 style="top: 53%;">{{ $name }}</h1>
                     {{-- <p style="top: 63%; font-size: 1.5em; color: whitesmoke;">{{ $grade }}</p> --}}
-                    <h2 style="top: 70%;" class="ville">{{ $ville }}</h2>
-                    <h2 style="top: 77%; position: absolute; font-weight: bolder;  font-size: 1.7em;" class="libelle">
-                        {{ $libelle }} </h2>
-                    <div class="qr-code" style="top: 20%; right: 20%; border: 1px solid rgb(6, 6, 59);">
+                    <h2 style="top: 60%;" class="ville">{{ $ville }}</h2>
+                    {{-- <h2 style="top: 77%; position: absolute; font-weight: bolder;  font-size: 1.7em;" class="libelle">
+                        {{ $libelle }} </h2> --}}
+                    <div class="qr-code" style="top: 84%; right: 50%; border: 1px solid rgb(6, 6, 59);">
                         <img src="{{ $lienImage }}" alt="" />
                     </div>
                 </div>
-                <div style=" position: absolute; top: -4%; right: -4.5%;" class="{{ $i }}">
+                <div style=" position: absolute; top: -4%; right: -5.5%;" class="{{ $i }}">
                     <img src="{{ $imageBadge }}" alt="" class="badge-item" id="badge">
                     @php
                         $lienImage = 'qrcode/' . $participant->id . '_pa.svg';
 
                     @endphp
-                    <h1 style="top: 59%;">{{ $name }}</h1>
+                    <h1 style="top: 49.5%;">{{ $name }}</h1>
                     {{-- <p style="top: 63%; font-size: 1.5em; color: whitesmoke;">{{ $grade }}</p> --}}
-                    <h2 style="top: 67%;" class="ville">{{ $ville }}</h2>
-                    <h2 style="top: 74%; position: absolute; font-weight: bolder;  font-size: 1.7em;" class="libelle">
-                        {{ $libelle }} </h2>
-                    <div class="qr-code" style="top: 16%; right: 20%; border: 1px solid rgb(6, 6, 59);">
+                    <h2 style="top: 56%;" class="ville">{{ $ville }}</h2>
+                    {{-- <h2 style="top: 74%; position: absolute; font-weight: bolder;  font-size: 1.7em;" class="libelle">
+                        {{ $libelle }} </h2> --}}
+                    <div class="qr-code" style="top: 80%; right: 50%; border: 1px solid rgb(6, 6, 59);">
                         <img src="{{ $lienImage }}" alt="" />
                     </div>
                 </div>
@@ -216,12 +220,12 @@
                         $lienImage = 'qrcode/' . $participant->id . '_pa.svg';
 
                     @endphp
-                    <h1 style="top: 59%;">{{ $name }}</h1>
+                    <h1 style="top: 50%;">{{ $name }}</h1>
                     {{-- <p style="top: 63%; font-size: 1.5em; color: whitesmoke;">{{ $grade }}</p> --}}
-                    <h2 style="top: 67%;" class="ville">{{ $ville }}</h2>
-                    <h2 style="top: 74%; position: absolute; font-weight: bolder;  font-size: 1.7em;" class="libelle">
-                        {{ $libelle }} </h2>
-                    <div class="qr-code" style="top: 16%; right: 20%; border: 1px solid rgb(6, 6, 59);">
+                    <h2 style="top: 56%;" class="ville">{{ $ville }}</h2>
+                    {{-- <h2 style="top: 74%; position: absolute; font-weight: bolder;  font-size: 1.7em;" class="libelle">
+                        {{ $libelle }} </h2> --}}
+                    <div class="qr-code" style="top: 80%; right: 50%; border: 1px solid rgb(6, 6, 59);">
                         <img src="{{ $lienImage }}" alt="" />
                     </div>
                     {{--  <p style="top: 45%;">{{ $grade }}</p>  --}}
@@ -229,18 +233,18 @@
                     {{--  <h3 style="top: 53%;" class={{ $pecialiste }}>{{ $pecialiste }} </h3>  --}}
 
                 </div>
-                <div style="position: absolute; top: 50%; right: -4.5%;" class="{{ $i }}">
+                <div style="position: absolute; top: 50%; right: -5.5%;" class="{{ $i }}">
                     <img src="{{ $imageBadge }}" alt="" class="badge-item" id="badge">
                     @php
                         $lienImage = 'qrcode/' . $participant->id . '_pa.svg';
 
                     @endphp
-                    <h1 style="top: 59%;">{{ $name }}</h1>
+                    <h1 style="top: 50%;">{{ $name }}</h1>
                     {{-- <p style="top: 63%; font-size: 1.5em; color: whitesmoke;">{{ $grade }}</p> --}}
-                    <h2 style="top: 67%;" class="ville">{{ $ville }}</h2>
-                    <h2 style="top: 74%; position: absolute; font-weight: bolder; font-size: 1.7em;" class="libelle">
-                        {{ $libelle }} </h2>
-                    <div class="qr-code" style="top: 16%; right: 20%; border: 1px solid rgb(6, 6, 59);">
+                    <h2 style="top: 56%;" class="ville">{{ $ville }}</h2>
+                    {{-- <h2 style="top: 74%; position: absolute; font-weight: bolder; font-size: 1.7em;" class="libelle">
+                        {{ $libelle }} </h2> --}}
+                    <div class="qr-code" style="top: 80%; right: 50%; border: 1px solid rgb(6, 6, 59);">
                         <img src="{{ $lienImage }}" alt="" />
                     </div>
                 </div>
@@ -249,7 +253,7 @@
                     $i++;
                 @endphp
             @elseif($i == 3)
-                <div style="margin-top: {{ '-6%;' }} position: absolute; margin-left: {{ '-5.5%' }}"
+                 <div style="margin-top: {{ '-6%;' }} position: absolute; margin-left: {{ '-5.5%' }}"
                     class="{{ $i }}">
 
                     <img src="{{ $imageBadge }}" alt="" class="badge-item" id="badge">
@@ -257,27 +261,27 @@
                         $lienImage = 'qrcode/' . $participant->id . '_pa.svg';
 
                     @endphp
-                    <h1 style="top: 62%;">{{ $name }}</h1>
+                    <h1 style="top: 53%;">{{ $name }}</h1>
                     {{-- <p style="top: 63%; font-size: 1.5em; color: whitesmoke;">{{ $grade }}</p> --}}
-                    <h2 style="top: 70%;" class="ville">{{ $ville }}</h2>
-                    <h2 style="top: 77%; position: absolute; font-weight: bolder;  font-size: 1.7em;" class="libelle">
-                        {{ $libelle }} </h2>
-                    <div class="qr-code" style="top: 20%; right: 20%; border: 1px solid rgb(6, 6, 59);">
+                    <h2 style="top: 60%;" class="ville">{{ $ville }}</h2>
+                    {{-- <h2 style="top: 77%; position: absolute; font-weight: bolder;  font-size: 1.7em;" class="libelle">
+                        {{ $libelle }} </h2> --}}
+                    <div class="qr-code" style="top: 84%; right: 50%; border: 1px solid rgb(6, 6, 59);">
                         <img src="{{ $lienImage }}" alt="" />
                     </div>
                 </div>
-                <div style=" position: absolute; top: -4%; right: -4.5%;" class="{{ $i }}">
+                <div style=" position: absolute; top: -4%; right: -5.5%;" class="{{ $i }}">
                     <img src="{{ $imageBadge }}" alt="" class="badge-item" id="badge">
                     @php
                         $lienImage = 'qrcode/' . $participant->id . '_pa.svg';
 
                     @endphp
-                    <h1 style="top: 59%;">{{ $name }}</h1>
+                    <h1 style="top: 49.5%;">{{ $name }}</h1>
                     {{-- <p style="top: 63%; font-size: 1.5em; color: whitesmoke;">{{ $grade }}</p> --}}
-                    <h2 style="top: 67%;" class="ville">{{ $ville }}</h2>
-                    <h2 style="top: 74%; position: absolute; font-weight: bolder;  font-size: 1.7em;" class="libelle">
-                        {{ $libelle }} </h2>
-                    <div class="qr-code" style="top: 16%; right: 20%; border: 1px solid rgb(6, 6, 59);">
+                    <h2 style="top: 56%;" class="ville">{{ $ville }}</h2>
+                    {{-- <h2 style="top: 74%; position: absolute; font-weight: bolder;  font-size: 1.7em;" class="libelle">
+                        {{ $libelle }} </h2> --}}
+                    <div class="qr-code" style="top: 80%; right: 50%; border: 1px solid rgb(6, 6, 59);">
                         <img src="{{ $lienImage }}" alt="" />
                     </div>
                 </div>
@@ -285,18 +289,18 @@
                     $i++;
                 @endphp
             @elseif($i == 4)
-                <div style="position: absolute; top: 50%;  left: {{ '-5.5%' }}" class="{{ $i }}">
+                 <div style="position: absolute; top: 50%;  left: {{ '-5.5%' }}" class="{{ $i }}">
                     <img src="{{ $imageBadge }}" alt="" class="badge-item" id="badge">
                     @php
                         $lienImage = 'qrcode/' . $participant->id . '_pa.svg';
 
                     @endphp
-                    <h1 style="top: 59%;">{{ $name }}</h1>
+                    <h1 style="top: 50%;">{{ $name }}</h1>
                     {{-- <p style="top: 63%; font-size: 1.5em; color: whitesmoke;">{{ $grade }}</p> --}}
-                    <h2 style="top: 67%;" class="ville">{{ $ville }}</h2>
-                    <h2 style="top: 74%; position: absolute; font-weight: bolder;  font-size: 1.7em;" class="libelle">
-                        {{ $libelle }} </h2>
-                    <div class="qr-code" style="top: 16%; right: 20%; border: 1px solid rgb(6, 6, 59);">
+                    <h2 style="top: 56%;" class="ville">{{ $ville }}</h2>
+                    {{-- <h2 style="top: 74%; position: absolute; font-weight: bolder;  font-size: 1.7em;" class="libelle">
+                        {{ $libelle }} </h2> --}}
+                    <div class="qr-code" style="top: 80%; right: 50%; border: 1px solid rgb(6, 6, 59);">
                         <img src="{{ $lienImage }}" alt="" />
                     </div>
                     {{--  <p style="top: 45%;">{{ $grade }}</p>  --}}
@@ -304,18 +308,18 @@
                     {{--  <h3 style="top: 53%;" class={{ $pecialiste }}>{{ $pecialiste }} </h3>  --}}
 
                 </div>
-                <div style="position: absolute; top: 50%; right: -4.5%;" class="{{ $i }}">
+                <div style="position: absolute; top: 50%; right: -5.5%;" class="{{ $i }}">
                     <img src="{{ $imageBadge }}" alt="" class="badge-item" id="badge">
                     @php
                         $lienImage = 'qrcode/' . $participant->id . '_pa.svg';
 
                     @endphp
-                    <h1 style="top: 59%;">{{ $name }}</h1>
+                    <h1 style="top: 50%;">{{ $name }}</h1>
                     {{-- <p style="top: 63%; font-size: 1.5em; color: whitesmoke;">{{ $grade }}</p> --}}
-                    <h2 style="top: 67%;" class="ville">{{ $ville }}</h2>
-                    <h2 style="top: 74%; position: absolute; font-weight: bolder; font-size: 1.7em;" class="libelle">
-                        {{ $libelle }} </h2>
-                    <div class="qr-code" style="top: 16%; right: 20%; border: 1px solid rgb(6, 6, 59);">
+                    <h2 style="top: 56%;" class="ville">{{ $ville }}</h2>
+                    {{-- <h2 style="top: 74%; position: absolute; font-weight: bolder; font-size: 1.7em;" class="libelle">
+                        {{ $libelle }} </h2> --}}
+                    <div class="qr-code" style="top: 80%; right: 50%; border: 1px solid rgb(6, 6, 59);">
                         <img src="{{ $lienImage }}" alt="" />
                     </div>
                 </div>

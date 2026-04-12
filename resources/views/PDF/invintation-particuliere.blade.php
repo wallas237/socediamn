@@ -211,14 +211,14 @@
                 $civilite = 'Cher(e) ' . $titre;
             @endphp
         @endif
-        <p><strong>{{ "Pr" }} {{ "ABODO JACKO REDOOR FETE" }}</strong></p>
-        <p><strong>{{ "Date Naissance:" }} {{ "01/01/1971" }}</strong></p>
-        <p><strong>{{ "Cni:" }} {{ "CI00310634" }}</strong></p>
+        <p><strong>{{ "Pr" }} {{ "CHOUKEM Siméon" }}</strong></p>
+        {{-- <p><strong>{{ "Date Naissance:" }} {{ "01/01/1971" }}</strong></p>
+        <p><strong>{{ "Cni:" }} {{ "CI00310634" }}</strong></p> --}}
     </div>
     <br>
      <img src="img/socediamn.png" alt="5ème congrès de la socediamn" id="filligrane" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; width: 60%;">
     <div class="droit">
-        Au nom du Comité d’organisation, nous avons l’honneur de vous inviter à participer
+        Au nom du Comité d’organisation, nous avons l’honneur de vous inviter comme Orateur
         au Congrès de la Société Camerounaise d’Endocrinologie, Diabétologie, Maladies Métaboliques
         et Nutrition (SOCEDIAMN), qui se tiendra du 16 au 18 avril 2026 à l'hôtel DJEUGA Palace de Yaoundé (Cameroun).
         <br>
