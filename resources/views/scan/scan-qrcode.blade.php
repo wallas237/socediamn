@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>Scan Congrès {{ "SAPLF & SCP" }}</h1>
+    <h1>Scan Congrès {{ "SOCEDIAMN & SFADE" }}</h1>
     <a href="/listes-sessions">Retour sur la liste des sessions</a>
 
     <!-- QR SCANNER CODE BELOW  -->

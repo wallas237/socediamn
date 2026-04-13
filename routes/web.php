@@ -395,6 +395,10 @@ Route::controller(BadgeController::class)->group(function () {
     Route::get('/badge-particulier', 'badgeParticulier');
     Route::get('/imprimer-badge', 'impressionBadge');
     Route::post('/badge-liste', 'addListeBage');
+    Route::get('/badge-par-categorie', 'badgeParCategorie');
+    Route::get('/badge-par-laboratoire', 'badgeParLaboratoire');
+    Route::get('/effectuer-badge-labo/{idLabo}', 'imprimeParLaboratoire');
+
 });
 Route::controller(ScanController::class)->group(function () {
     Route::get('/listes-sessions', 'listeSession')->name('liste.session');

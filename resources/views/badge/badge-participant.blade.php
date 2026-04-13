@@ -130,6 +130,10 @@
                 if(!empty($verifierSiOrateur)){
                     $imageBadge = 'img/speaker.png';
                 }
+
+                if($participant->specialite == 9){
+                    $imageBadge = 'img/speaker.png';
+                }
                 // $grades = DB::table('grades')->where('id', $participant->grade)->first();
                 // $grade = !empty($grades) ? $grades->titre : 'VISITEUR';
                 // $libelle = 'PARTICIPANT';

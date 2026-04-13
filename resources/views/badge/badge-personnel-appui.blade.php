@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Badge</title>
     <style>
-        .container div {
-            width: 380px;
-            height: 536px;
+        /*.container div {
+            width: 397px;
+            height: 560px;
 
         }
 
@@ -18,160 +18,42 @@
             z-index: 0;
             width: 380px;
             height: 536px;
+        }*/
+
+        .container div {
+            /*width: 397px;
+            height: 560px;
+
+            */
+            width: 385px;
+            height: 545px;
+
         }
+
+        div #badge {
+            position: absolute;
+            z-index: 0;
+            /*width: 380px;
+            height: 536px;*/
+            z-index: 0;
+            width: 385px;
+            height: 545px;
+        }
+
 
 
 
         .qr-code {
             position: absolute;
-            width: 80px;
-            height: 80px;
+            width: 30px !important;
+            height: 30px !important;
             z-index: 1000;
 
         }
 
-        .qr-code img {
-            width: 80px;
-            height: 80px;
-        }
 
 
 
-        .Orateur {
-            height: 20vh;
-            background: rgba(16, 67, 16, 0.869);
-            padding: 1px 0 7px 0;
-            border-radius: 50%;
-            border: 1px solid white;
-            font-size: 2.1em;
-            font-style: italic;
-            font-weight: 200px !important;
-            color: white;
-            width:  70%;
-            position: absolute;
-            left: 15%;
-
-        }
-
-        .INFORMATICIEN{
-            height: 25vh;
-            background: rgb(5, 200, 243);
-            padding: 1px 0 7px 0;
-            border-radius: 50%;
-            border: 1px solid white;
-            font-size: 2.2em;
-            font-style: italic;
-            font-weight: 900 !important;
-            color: white;
-            width: 80%;
-            position: absolute;
-            left: 6%;
-        }
-
-        .SECRETARIAT {
-            height: 25vh;
-            background: rgb(5, 200, 243);
-            padding: 1px 0 7px 0;
-            border-radius: 50%;
-            border: 1px solid white;
-            font-size: 2.2em;
-            font-style: italic;
-            font-weight: 900 !important;
-            color: white;
-            width:  70%;
-            position: absolute;
-            left: 15%;
-        }
-
-        .GESTIONNAIRE-SALLE {
-            height: 25vh;
-            background: rgb(5, 200, 243);
-            padding: 1px 0 7px 0;
-            border-radius: 50%;
-            border: 1px solid white;
-            font-size: 2em;
-            font-style: italic;
-            font-weight: 900 !important;
-            color: white;
-            width:  90%;
-            position: absolute;
-            left: 3%;
-        }
-
-        .LOGISTIQUE {
-            height: 25vh;
-            background: rgb(5, 200, 243);
-            padding: 1px 0 7px 0;
-            border-radius: 50%;
-            border: 1px solid white;
-            font-size: 2.2em;
-            font-style: italic;
-            font-weight: 900 !important;
-            color: white;
-            width:  70%;
-            position: absolute;
-            left: 15%;
-        }
-
-        .SECURITE {
-            height: 25vh;
-            background: rgb(5, 200, 243);
-            padding: 1px 0 7px 0;
-            border-radius: 50%;
-            border: 1px solid white;
-            font-size: 2.2em;
-            font-style: italic;
-            font-weight: 900 !important;
-            color: white;
-            width:  70%;
-            position: absolute;
-            left: 15%;
-        }
-
-        .HOTESSE {
-            height: 25vh;
-            background: rgb(5, 200, 243);
-            padding: 1px 0 7px 0;
-            border-radius: 50%;
-            border: 1px solid white;
-            font-size: 2.2em;
-            font-style: italic;
-            font-weight: 900 !important;
-            color: white;
-            width:  70%;
-            position: absolute;
-            left: 15%;
-        }
-
-        .STEWARD {
-            height: 25vh;
-            background: rgb(5, 200, 243);
-            padding: 1px 0 7px 0;
-            border-radius: 50%;
-            border: 1px solid white;
-            font-size: 2.2em;
-            font-style: italic;
-            font-weight: 900 !important;
-            color: white;
-            width:  70%;
-            position: absolute;
-            left: 15%;
-        }
-
-        .MEDIA {
-            height: 25vh;
-            background: rgb(7, 19, 22);
-            padding: 1px 0 7px 0;
-            border-radius: 50%;
-            border: 1px solid white;
-            font-size: 2.2em;
-            font-style: italic;
-            font-weight: 900 !important;
-            color: white;
-            width:  70%;
-            position: absolute;
-            left: 15%;
-        }
 
 
 
@@ -180,8 +62,10 @@
             width: 95%;
             text-align: center;
             z-index: 1000;
-            font-style: italic;
-            font-weight: 900 !important;
+            /* font-style: italic; */
+            font-weight: bolder !important;
+            color: rgba(0, 0, 0, 0.815);
+            font-size: 1.7em;
         }
 
         div h2 {
@@ -190,7 +74,8 @@
             text-align: center;
             z-index: 1000;
             font-style: italic;
-            font-weight: 600 !important;
+            font-weight: bold !important;
+            color: gray !important;
         }
 
         div h3 {
@@ -209,9 +94,19 @@
         }
 
         .bg-1 {}
-        div {
-            border: 4px solid rgba(44, 43, 43, 0.646);
 
+        .badge-item {
+            border-bottom: 2px solid rgba(44, 43, 43, 0.646);
+
+        }
+
+        .ville {
+            color: #0c1c48 !important;
+            font-size: 2em;
+        }
+
+        .libelle {
+            color: rgba(0, 0, 0, 0.815) !important;
         }
     </style>
 </head>
@@ -223,63 +118,100 @@
         // $liste = DB::table('badge_listes')->get();
         $i = 1;
         $compteurDiv = 0;
-         $imageBadge = 'assets/images/badges/badge.png';
+        $imageBadge = 'img/umc.png';
     @endphp
     <div class="container">
         @foreach ($data['badges'] as $participant)
             @php
-
-
-                $pecialiste = $participant->service;
+                if ($participant->service == 'GESTIONNAIRE-SALLE') {
+                    $imageBadge = 'img/gestionnaire.png';
+                } elseif ($participant->service == 'HOTESSE') {
+                    $imageBadge = 'img/hotesse.png';
+                } elseif ($participant->service == 'STEWARD') {
+                    $imageBadge = 'img/steward.png';
+                } elseif ($participant->service == 'SECRETARIAT') {
+                    $imageBadge = 'img/secretariat.png';
+                } elseif ($participant->service == 'UMC') {
+                    $imageBadge = 'img/umc.png';
+                } elseif ($participant->service == 'MEDIA') {
+                    $imageBadge = 'img/media.png';
+                } else {
+                   
+                }
 
                 $name = $participant->titre . ' ' . mb_strtoupper($participant->name);
                 $nbreLettre = strlen($name);
-                if($nbreLettre > 18){
+                if ($nbreLettre > 18) {
                     $tabName = explode(' ', $name);
-
-                    $name = $tabName[0]." ".$tabName[1];
-                    if(strlen($name)>18){
-                        $name = $tabName[0]." ".$tabName[1];
-                    }else{
-
+                    $prenom = explode(' ', $participant->prenom);
+                    $name = $tabName[0] . ' ' . $tabName[1] . ' ' . $prenom[0];
+                    if (strlen($name) > 18) {
+                        $name = $tabName[0] . ' ' . $tabName[1] . ' ' . $prenom[0][0] . '.';
+                    } else {
                     }
-                }else{
-
+                } else {
+                    $prenom = explode(' ', $participant->prenom);
+                    $long = $name . ' ' . ucfirst($prenom[0]);
+                    $nbreLettre2 = strlen($long);
+                    if ($nbreLettre2 < 18) {
+                        $name = $long;
+                    } else {
+                        $name = $name . ' ' . ucfirst($participant->prenom[0]) . '.';
+                    }
                 }
-
+                // $ville = mb_strtoupper($ville);*/
             @endphp
             @if ($i == 1)
-                <div style="margin-top: {{ '-6%;' }} position: absolute; margin-left: {{ '-6.5%' }}"
+                <div style="margin-top: {{ '-6%;' }} position: absolute; margin-left: {{ '-5.5%' }}"
                     class="{{ $i }}">
-                    <img src="{{ $imageBadge }}" alt="" id="badge">
 
-                    <h1 style="top: 60%;">{{ $name }}</h1>
+                    <img src="{{ $imageBadge }}" alt="" class="badge-item" id="badge">
 
-                    <h3 style="top: 70%;" class="{{ $pecialiste }}">{{  $pecialiste }} </h3>
+                    <h1 style="top: 53%;">{{ $name }}</h1>
+
+                </div>
+                <div style=" position: absolute; top: -4%; right: -5.5%;" class="{{ $i }}">
+                    <img src="{{ $imageBadge }}" alt="" class="badge-item" id="badge">
+
+                    <h1 style="top: 49.5%;">{{ $name }}</h1>
+
 
                 </div>
                 @php
                     $i++;
                 @endphp
             @elseif($i == 2)
-                <div style=" position: absolute; top: -4%; right: -5.5%;" class="{{ $i }}">
-                    <img src="{{ $imageBadge }}" alt="" id="badge">
+                <div style="position: absolute; top: 50%;  left: {{ '-5.5%' }}" class="{{ $i }}">
+                    <img src="{{ $imageBadge }}" alt="" class="badge-item" id="badge">
 
-                    <h1 style="top: 57%;">{{ $name }}</h1>
+                    <h1 style="top: 50%;">{{ $name }}</h1>
 
-                    <h3 style="top: 66%;" class="{{ $pecialiste }}">{{  $pecialiste }} </h3>
 
                 </div>
+                <div style="position: absolute; top: 50%; right: -5.5%;" class="{{ $i }}">
+                    <img src="{{ $imageBadge }}" alt="" class="badge-item" id="badge">
+
+                    <h1 style="top: 50%;">{{ $name }}</h1>
+
+
+                </div>
+
                 @php
                     $i++;
                 @endphp
             @elseif($i == 3)
-                <div style="position: absolute; top: 50%; right: -5.5%;" class="{{ $i }}">
-                    <img src="{{ $imageBadge }}" alt="" id="badge">
+                <div style="margin-top: {{ '-6%;' }} position: absolute; margin-left: {{ '-5.5%' }}"
+                    class="{{ $i }}">
 
-                    <h1 style="top: 57%;">{{ $name }}</h1>
+                    <img src="{{ $imageBadge }}" alt="" class="badge-item" id="badge">
 
-                    <h3 style="top: 66%;" class="{{ $pecialiste }}">{{  $pecialiste }} </h3>
+                    <h1 style="top: 53%;">{{ $name }}</h1>
+
+                </div>
+                <div style=" position: absolute; top: -4%; right: -5.5%;" class="{{ $i }}">
+                    <img src="{{ $imageBadge }}" alt="" class="badge-item" id="badge">
+
+                    <h1 style="top: 49.5%;">{{ $name }}</h1>
 
                 </div>
                 @php
@@ -287,11 +219,16 @@
                 @endphp
             @elseif($i == 4)
                 <div style="position: absolute; top: 50%;  left: {{ '-5.5%' }}" class="{{ $i }}">
-                    <img src="{{ $imageBadge }}" alt="" id="badge">
+                    <img src="{{ $imageBadge }}" alt="" class="badge-item" id="badge">
 
-                    <h1 style="top: 57%;">{{ $name }}</h1>
+                    <h1 style="top: 50%;">{{ $name }}</h1>
 
-                    <h3 style="top: 66%;" class="{{ $pecialiste }}">{{  $pecialiste }} </h3>
+
+                </div>
+                <div style="position: absolute; top: 50%; right: -5.5%;" class="{{ $i }}">
+                    <img src="{{ $imageBadge }}" alt="" class="badge-item" id="badge">
+
+                    <h1 style="top: 50%;">{{ $name }}</h1>
 
                 </div>
 
@@ -306,12 +243,11 @@
                 @endphp
             @endif
             @php
-                 $delete = DB::table('comite_organisations')
-                                ->where('id', $participant->id)
-                                ->update([
-                                    'badge'=>1
-                                ]);
-
+                $delete = DB::table('comite_organisations')
+                    ->where('id', $participant->id)
+                    ->update([
+                        'badge' => 1,
+                    ]);
 
                 $compteurDiv++;
             @endphp

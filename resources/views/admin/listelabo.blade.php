@@ -9,13 +9,16 @@
         </button>
     </div>
     <br>
+    @php
+        $labo = DB::table('laboratoires')->orderBy('labo', 'asc')->get();   
+    @endphp
     <form method="POST" action="" class="w-100  d-flex justify-content-center">
         @csrf
         <div class="input-group w-50 justify-content-center">
             <div class="form-outline  w-50">
                <select name="labo" class="form-outline  w-100 h-100">
                    <option value="Choisir">Choisir</option>
-                   @foreach($labo as $k=>$v)
+                   @foreach($labo as $v)
                     <option value="{{$v->id}}">{{$v->labo}}</option>
                    @endforeach
                </select>
@@ -45,8 +48,9 @@
         <tbody>
                 @php 
                     $i=1;
+                    
                 @endphp
-                @foreach($inscript as $k => $v )
+                @foreach($inscript as  $v )
             
             <tr>
                 <th scope="row">{{$i}}</th>
@@ -90,22 +94,7 @@
           
         </tbody>
     </table>
-    <nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-
-     {{$inscript->links()}}
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>  
+    
     
 </div>
 <script type="text/javascript">

@@ -145,6 +145,10 @@
                     <li class="nav-item"> <a class="nav-link" href="/badge-particulier">Badge Particulière</a></li>
                     <li class="nav-item"> <a class="nav-link" href="/badge-personnel-appui">Badge Personnel appui</a>
                     </li>
+                     <li class="nav-item"> <a class="nav-link" href="/badge-par-categorie">Badge Par Catégorie</a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link" href="/badge-par-laboratoire">Badge Par Labo</a>
+                    </li>
 
                     {{--  <li class="nav-item"> <a class="nav-link" href="/shop-ca">Hist. Retraits</a></li>
                         <li class="nav-item"> <a class="nav-link" href="/liste-achat">Hist. Achat</a></li>  --}}

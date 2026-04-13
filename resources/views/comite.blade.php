@@ -16,7 +16,7 @@
 
                     <div>
                         <h3 style="color: #062844ee;">
-                            {{ "Formulaire d'enregistrement du personnel d'appui au congrès de la SAPLF & SCP" }}
+                            {{ "Formulaire d'enregistrement du personnel d'appui au congrès de la SOCEDIAMN & SFADE" }}
                         </h3>
                     </div>
 
@@ -108,10 +108,9 @@
                                         <option value="GESTIONNAIRE-SALLE">GESTIONNAIRE-SALLE</option>
                                         <option value="HOTESSE">HOTESSE</option>
                                         <option value="MEDIA">MEDIA</option>
-                                        <option value="PROTOCOLE">PROTOCOLE</option>
                                         <option value="SECRETARIAT">SECRETARIAT</option>
-                                        <option value="SECURITE">SECURITE</option>
                                         <option value="STEWARD">STEWARD</option>
+                                        <option value="UMC">UMC</option>
                                     </select>
                                     <span class="text-danger f-3">*</span>
                                     @error('service')
@@ -133,14 +132,13 @@
 
 
 
-
                     </form>
 
                 </div>
 
 
                 <h4 style="width: 100%; text-align: center;" class="text-danger">En cas de difficultés contactez le
-                    00237 680 816 056
+                    00237 698 711 769
                 </h4>
                 @php
                     session()->pull('inscription', session('inscription'));
