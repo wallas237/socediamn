@@ -20,7 +20,7 @@ class BadgeController extends Controller
 
         $liste = DB::table('inscriptions')
             ->where('confirmation_attestion', 0)
-            // ->where('confirmation_inscription', 1)
+            ->where('confirmation_inscription', 1)
             ->limit(12)
             ->get();
 
@@ -84,11 +84,6 @@ class BadgeController extends Controller
         //  return $pdf->stream();
         return $sheet->download($libelle . '.pdf');
 
-
-        /*!$pdf = PDF::loadView('badge.badge-participant', ['inscription'=>$inscription])
-                ->setPaper('a4', 'portrait');
-        return $pdf->stream();*/
-        //return view('badge.badge-participant', ['inscription' => $inscription, "specialite" => $idSpecialite]);
     }
 
     function impressionBadge()
