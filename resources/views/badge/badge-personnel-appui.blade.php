@@ -153,7 +153,7 @@
                     $prenom = explode(' ', $participant->prenom);
                     $long = $name . ' ' . ucfirst($prenom[0]);
                     $nbreLettre2 = strlen($long);
-                    if ($nbreLettre2 < 18) {
+                    if ($nbreLettre2 <= 21) {
                         $name = $long;
                     } else {
                         $name = $name . ' ' . ucfirst($participant->prenom[0]) . '.';

@@ -85,9 +85,9 @@
                                                 <i class="mdi mdi-account"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton7">
-                                                <a class="dropdown-item" href="/update-inscription/{{ $v->id }}">
-                                                    <button class="btn btn-warning p-2">
-                                                        <i class="mdi mdi-account-convert"></i> Modifier Infos </button>
+                                                <a class="dropdown-item" href="/effectuer-badge-categorie/{{ $v->specialite }}">
+                                                    <button class="btn btn-success p-2">
+                                                        <i class="mdi mdi-account-convert"></i> imprimer badges </button>
                                                 </a>
                                                 
                                             </div>

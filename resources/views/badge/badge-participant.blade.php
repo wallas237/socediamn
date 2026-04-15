@@ -124,15 +124,23 @@
         @foreach ($data['participants'] as $participant)
             @php
 
-                $verifierSiOrateur = DB::table('com_orale_valides')
-                    ->where('email', trim($participant->email))
-                    ->first();
-                if(!empty($verifierSiOrateur)){
+                // $verifierSiOrateur = DB::table('com_orale_valides')
+                //     ->where('email', trim($participant->email))
+                //     ->first();
+                // if(!empty($verifierSiOrateur)){
+                //     $imageBadge = 'img/speaker.png';
+                // }
+
+                if($participant->specialite == 9 || $participant->specialite == 8){
                     $imageBadge = 'img/speaker.png';
                 }
 
-                if($participant->specialite == 9){
-                    $imageBadge = 'img/speaker.png';
+                if($participant->specialite == 5){
+                    $imageBadge = 'img/etudiant.png';
+                }
+
+                if($participant->specialite == 10){
+                    $imageBadge = 'img/patient.png';
                 }
                 // $grades = DB::table('grades')->where('id', $participant->grade)->first();
                 // $grade = !empty($grades) ? $grades->titre : 'VISITEUR';
@@ -159,24 +167,24 @@
                 //     }
                 // }
 
-                $name = $participant->titre . ' ' . mb_strtoupper($participant->name);
+                $name = $participant->titre . ' ' . mb_strtoupper($participant->prenom);
                 $nbreLettre = strlen($name);
                 if ($nbreLettre > 18) {
                     $tabName = explode(' ', $name);
-                    $prenom = explode(' ', $participant->prenom);
+                    $prenom = explode(' ', $participant->name);
                     $name = $tabName[0] . ' ' . $tabName[1] . ' ' . $prenom[0];
                     if (strlen($name) > 18) {
                         $name = $tabName[0] . ' ' . $tabName[1] . ' ' . $prenom[0][0] . '.';
                     } else {
                     }
                 } else {
-                    $prenom = explode(' ', $participant->prenom);
+                    $prenom = explode(' ', $participant->name);
                     $long = $name . ' ' . ucfirst($prenom[0]);
                     $nbreLettre2 = strlen($long);
                     if ($nbreLettre2 < 18) {
                         $name = $long;
                     } else {
-                        $name = $name . ' ' . ucfirst($participant->prenom[0]) . '.';
+                        $name = $name . ' ' . ucfirst($participant->name[0]) . '.';
                     }
                 }
                 // $ville = mb_strtoupper($ville);*/

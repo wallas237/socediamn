@@ -138,12 +138,12 @@ Route::get('/rejet-abstract', function () {
 
 Route::get('/qr-code-transform', function () {
 
-    $path = public_path('atelier-2-drainage-pleural.svg');
+    $path = public_path('lien-pwa-iphone.svg');
     QrCode::size(400)
         ->color(40, 40, 40)
         ->margin(1)
         ->generate(
-            "https://dashboard.scpneumologie.com/enquete-satisfaction-congres-saplf-scp/22",
+            "https://pwa.socediamn.org",
             $path
         );
 });
@@ -398,7 +398,7 @@ Route::controller(BadgeController::class)->group(function () {
     Route::get('/badge-par-categorie', 'badgeParCategorie');
     Route::get('/badge-par-laboratoire', 'badgeParLaboratoire');
     Route::get('/effectuer-badge-labo/{idLabo}', 'imprimeParLaboratoire');
-
+    Route::get('/effectuer-badge-categorie/{idCategorie}', 'imprimeParCategorie');
 });
 Route::controller(ScanController::class)->group(function () {
     Route::get('/listes-sessions', 'listeSession')->name('liste.session');
