@@ -67,6 +67,7 @@ class SendCertificatCongres extends Controller
     {
         $inscriptions = Inscription::where('confirmation_attestion', 0)
             ->join('scan_presences', 'inscriptions.id', '=', 'scan_presences.invite_id')
+            ->select('inscriptions.*', 'scan_presences.invite_id')
             ->limit(20)
             ->get();
         
