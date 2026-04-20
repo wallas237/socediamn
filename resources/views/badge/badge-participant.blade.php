@@ -131,9 +131,9 @@
                 //     $imageBadge = 'img/speaker.png';
                 // }
 
-                if($participant->specialite == 9 || $participant->specialite == 8){
-                    $imageBadge = 'img/speaker.png';
-                }
+                // if($participant->specialite == 9){
+                //     $imageBadge = 'img/speaker.png';
+                // }
 
                 if($participant->specialite == 5){
                     $imageBadge = 'img/etudiant.png';

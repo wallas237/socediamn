@@ -65,11 +65,13 @@ class SendCertificatCongres extends Controller
 
     function sendCertificatAllParticipation()
     {
-        $inscriptions = Inscription::where('confirmation_inscription', 1)
-            ->where('confirmation_attestion', 0)
+        $inscriptions = Inscription::where('confirmation_attestion', 0)
+            ->join('scan_presences', 'inscriptions.id', '=', 'scan_presences.invite_id')
             ->limit(20)
             ->get();
+        
         foreach ($inscriptions as $inscription) {
+
             $message = (new SendCertificatParticipation($inscription->id))
                 ->onQueue('send-participate-attestation');
 
@@ -135,10 +137,10 @@ class SendCertificatCongres extends Controller
                 ->onQueue('confirm-emails-abstract');
             Mail::to($conference->email)
                 ->queue($message);
-           $update = Abstracts::where('id', $conference->id)
-            ->update([
-                'confirmation_attestion'=>1
-            ]);
+            $update = Abstracts::where('id', $conference->id)
+                ->update([
+                    'confirmation_attestion' => 1
+                ]);
         }
 
         return back()->with('status', 'Les Certificats de conference au congrès ont été envoyées');

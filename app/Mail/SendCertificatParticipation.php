@@ -29,7 +29,7 @@ class SendCertificatParticipation extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Certificat Participation congrès SAPLF & SCP',
+            subject: 'Certificat Participation congrès SOCEDIAMN & SFADE',
         );
     }
 

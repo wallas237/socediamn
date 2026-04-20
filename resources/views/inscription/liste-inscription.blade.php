@@ -2,7 +2,7 @@
     {{-- @if (session('message'))
         <x-dialogue-alert color="{{ session('color') }}" message="{{ session('message') }}" />
     @endif --}}
-     @if (session('status'))
+    @if (session('status'))
         <div class="alert alert-success d-flex align-items-center" role="alert">
 
             <div>
@@ -24,9 +24,10 @@
                     <button class="btn btn-info">
                         <a href="{{ route('excel.liste.inscription') }}">Télécharger liste inscription validée Excel </a>
                     </button>
-                    {{--     <button class="btn btn-warning">
-                        <a href="/send-certificat-all-participation" style="text-decoration: none; color: white;">Envoyez Attestation participation </a>
-                    </button> --}}
+                    <button class="btn btn-warning">
+                        <a href="/send-certificat-all-participation"
+                            style="text-decoration: none; color: white;">Envoyez Attestation participation </a>
+                    </button>
 
 
                 </div>
@@ -96,12 +97,12 @@
                                                     <button class="btn btn-warning p-2">
                                                         <i class="mdi mdi-account-convert"></i> Modifier Infos </button>
                                                 </a>
-                                                {{--  <a class="dropdown-item" href="/send-congres-participation/{{ $v->id }}"
+                                                 <a class="dropdown-item" href="/send-congres-participation/{{ $v->id }}"
                                                     onclick="return Confirm('Merci de confirmer l\'envoi du certificat de participation')">
                                                     <button class="btn btn-success p-2">
                                                         <i class="mdi mdi-email-outline"></i> Envoyer certificat
                                                     </button>
-                                                </a> --}}
+                                                </a>
                                                 <a class="dropdown-item" href="/lettre-invitation/{{ $v->id }}"
                                                     target="_blank">
                                                     <button class="btn btn-success p-2">

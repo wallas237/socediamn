@@ -55,6 +55,28 @@ Route::get('/mail-excuse', function () {
     return "OK mail";
 });
 
+Route::get('/verification-badge-tire', function () {
+
+    $inscription = Inscription::where('confirmation_attestion', 1)->get();
+    $badgeEnvoyerMaisPasImprimer = [];
+    foreach ($inscription as $v) {
+        $verifier = DB::table('scan_presences')->where('invite_id', $v->id)
+                                            ->where('session_id', 38)
+                                            ->first();
+        if(empty($verifier)){
+            array_push($badgeEnvoyerMaisPasImprimer, $v->id." ".$v->prenom);
+            $updateInscription = Inscription::where('id', $v->id)
+                                    ->update([
+                                            'confirmation_attestion'=>0,
+                                            'confirmation_inscription'=>1
+                                    ]);
+        }
+    }
+
+
+    return [$badgeEnvoyerMaisPasImprimer, count($badgeEnvoyerMaisPasImprimer)];
+});
+
 Route::get('/mail-preinscription/{id}', function ($id) {
 
     $inscription = Inscription::where('id',  $id)->first();

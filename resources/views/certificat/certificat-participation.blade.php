@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Certificat participation congres SCP & SAPLF</title>
+    <title>Certificat participation congres SOCEDIAMN & SFADE</title>
     <style>
         body {
             margin: 0px 0px;
@@ -30,7 +30,7 @@
             position: absolute;
             z-index: 1000;
             width: 100%;
-            top: 36%;
+            top: 32%;
             text-align: center;
             font-size: 2.3em;
             font-style: italic;
@@ -44,12 +44,12 @@
 </head>
 <body>
     {{-- $inscription->titre." ". --}}
-    <h1 class="name">{{  mb_strtoupper($inscription->name)." ".$inscription->prenom }}</h1>
+    <h1 class="name">{{  mb_strtoupper($inscription->prenom)." ".$inscription->name }}</h1>
 
     {{--  <h3>{{ strlen('The right ventricle in patients with obstructive sleep apnea syndrome in yaoundé,') }}</h3>  --}}
     <div class="bg-certificate">
 
-        <img src="assets/images/attestation/congres/participation.png" alt="" id="bg">
+        <img src="attestation/participation.png" alt="" id="bg">
     </div>
 </body>
 </html>

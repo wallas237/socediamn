@@ -34,20 +34,20 @@
 
                                 <p
                                     style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
-                                    {{ 'Nous avons été honorés de votre présence au 11 ' }}<sup>ème</sup>
-                                    Congrès de la SAPLF(Société Africaine Pneumologie de Langue Française) et au
-                                    5<sup>ème</sup>
-                                    Congrès de la SCP(Société Camerounaise de Pneumologie) qui a eu lieu du <strong>31
-                                        Juillet au 02 Août 2025</strong> à l'Hôtel La Falaise de BONANJO</p>
+                                    {{ 'Nous avons été honorés de votre présence au 5' }}<sup>ème</sup>
+                                    Congrès de la SOCEDIAMN(SOCIÉTÉ CAMEROUNAISE D’ENDOCRINOLOGIE, DIABÈTE MÉTABOLISME ET NUTRITION) et au
+                                    8<sup>ème</sup>
+                                    Congrès de la SFADE(SOCIÉTÉ FRANCOPHONE AFRICAINE DE DIABÉTOLOGIE ET D’ENDOCRINOLOGIE) qui a eu lieu du <strong>16
+                                        au 18 Avril 2026</strong> à l'Hôtel Djeuga Palace de Yaoundé</p>
                                 <p
                                     style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
                                     {{ "Pour obtenir votre attestation de participation nous vous prions de  cliquer sur le lien ci-dessous." }} <br>
-                                    <a href="https://dashboard.scpneumologie.com/certificat-participation/{{ $data->id }}" download="">Cliquez ici pour récupérer votre certificat</a>
+                                    <a href="https://api.socediamn.org/certificat-participation/{{ $data->id }}" download="">Cliquez ici pour récupérer votre certificat</a>
 
 
 
-                                    <br>
-                                    {{ "Si vous souhaitez télécharger le livre des résumés " }} <a href="https://scpneumologie.com/Livre_des_re%CC%81sume%CC%81s_CAPLF_2025.pdf">Cliquez ici</a>
+                                    {{-- <br> --}}
+                                    {{-- {{ "Si vous souhaitez télécharger le livre des résumés" }} <a href="">Cliquez ici</a> --}}
                                     <br>
                                     {{ "Nos salutations cordiales." }}
                                     <br>

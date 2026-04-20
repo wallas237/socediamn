@@ -15,8 +15,10 @@ class CertificationController extends Controller
 {
     function participation($id)
     {
-        $inscription = Inscription::find($id);
-        if($inscription->confirmation_inscription == 0){
+        $inscription = Inscription::join('scan_presences', 'inscriptions.id', '=', 'scan_presences.invite_id')
+            ->where('inscriptions.id', $id)
+            ->first();
+        if (empty($inscription)) {
             return back();
         }
         // $presence = ScanPresence::where("invite_id", $id)
@@ -31,13 +33,14 @@ class CertificationController extends Controller
         //return view('certificat.certificat-participation');
     }
 
-    function participationAtelierEcho($id){
+    function participationAtelierEcho($id)
+    {
         $atelierEcho = AtelierSaplfScp::where('atelier_pre_1', 'Oui')
-        ->where('id', $id)
-        ->where('confirmation_paiement', 1)
-        ->first();
-        if(empty($atelierEcho)){
-             return "Nous sommes désolé vous ne pouvez pas télécharger le certificat de participation car vous n'avez pas soldé l'inscription";
+            ->where('id', $id)
+            ->where('confirmation_paiement', 1)
+            ->first();
+        if (empty($atelierEcho)) {
+            return "Nous sommes désolé vous ne pouvez pas télécharger le certificat de participation car vous n'avez pas soldé l'inscription";
         }
 
 
@@ -45,16 +48,15 @@ class CertificationController extends Controller
         $pdf = PDF::loadView('certificat.certificat-atelier.atelier-echo', ['inscription' => $atelierEcho])
             ->setPaper('a4', 'landscape');
         return $pdf->stream();
-
-
     }
 
-    function participationAtelierSpiro($id){
+    function participationAtelierSpiro($id)
+    {
         $atelierEcho = AtelierSaplfScp::where('atelier_pre_2', 'Oui')
-        ->where('id', $id)
-        ->where('confirmation_paiement', 1)
-        ->first();
-        if(empty($atelierEcho)){
+            ->where('id', $id)
+            ->where('confirmation_paiement', 1)
+            ->first();
+        if (empty($atelierEcho)) {
             return "Nous sommes désolé vous ne pouvez pas télécharger le certificat de participation car vous n'avez pas soldé l'inscription";
         }
 
@@ -62,8 +64,6 @@ class CertificationController extends Controller
         $pdf = PDF::loadView('certificat.certificat-atelier.atelier-spirometrie', ['inscription' => $atelierEcho])
             ->setPaper('a4', 'landscape');
         return $pdf->stream();
-
-
     }
 
     function moderateur($id)
@@ -73,7 +73,6 @@ class CertificationController extends Controller
         $pdf = PDF::loadView('certificat.certificat-moderateur', ['inscription' => $inscription])
             ->setPaper('a4', 'landscape');
         return $pdf->stream();
-
     }
 
     function orateur($id)
@@ -83,7 +82,6 @@ class CertificationController extends Controller
         $pdf = PDF::loadView('certificat.certificat-orateur', ['inscription' => $inscription])
             ->setPaper('a4', 'landscape');
         return $pdf->stream();
-
     }
 
     function poster($id)
@@ -92,10 +90,10 @@ class CertificationController extends Controller
         $abstract = Abstracts::where('email', $com->email)->first();
         $inscription = Inscription::where('email', $com->email)->first();
         $name = $abstract->name;
-        if(!empty($inscription)){
+        if (!empty($inscription)) {
             $name = $inscription->titre . ' ' . mb_strtoupper($inscription->name) . ' ' . $inscription->prenom;
         }
-        $pdf = PDF::loadView('certificat.certificat-poster', ['name' => $name, 'com'=>$com])
+        $pdf = PDF::loadView('certificat.certificat-poster', ['name' => $name, 'com' => $com])
             ->setPaper('a4', 'landscape');
         return $pdf->stream();
         //return view('certificat.certificat-poster');
@@ -103,30 +101,30 @@ class CertificationController extends Controller
 
     function orale($id)
     {
-        $com = ComOraleValide::where('numero',$id)->first();
-        if($com->salle >=1){
+        $com = ComOraleValide::where('numero', $id)->first();
+        if ($com->salle >= 1) {
             return "Nous sommes désolés car vous n'avez pas fait de présentation donc vous ne pouvez pas télécharger l'attestation de communication";
         }
         $abstract = Abstracts::where('email', $com->email)->first();
         $inscription = Inscription::where('email', $com->email)->first();
         $name = $abstract->name;
-        if(!empty($inscription)){
+        if (!empty($inscription)) {
             $name = $inscription->titre . ' ' . mb_strtoupper($inscription->name) . ' ' . $inscription->prenom;
         }
-        $pdf = PDF::loadView('certificat.certificat-communication', ['name' => $name, 'com'=>$com])
+        $pdf = PDF::loadView('certificat.certificat-communication', ['name' => $name, 'com' => $com])
             ->setPaper('a4', 'landscape');
-            return $pdf->stream();
+        return $pdf->stream();
     }
 
     function reference($id)
     {
         $abstract = Abstracts::find($id);
-         $inscription = Inscription::where('email', $abstract->email)->first();
-         $name = $abstract->name;
-        if(!empty($inscription)){
+        $inscription = Inscription::where('email', $abstract->email)->first();
+        $name = $abstract->name;
+        if (!empty($inscription)) {
             $name = $inscription->titre . ' ' . mb_strtoupper($inscription->name) . ' ' . $inscription->prenom;
         }
-        $pdf = PDF::loadView('certificat.certificat-reference', ['abstract' => $abstract, 'name'=>$name])
+        $pdf = PDF::loadView('certificat.certificat-reference', ['abstract' => $abstract, 'name' => $name])
             ->setPaper('a4', 'landscape');
         return $pdf->stream();
     }
@@ -195,6 +193,4 @@ class CertificationController extends Controller
         return $pdf->stream();
         //return view('certificat.first-chercheur');
     }
-
- 
 }

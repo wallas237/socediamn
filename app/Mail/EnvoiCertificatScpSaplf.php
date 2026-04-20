@@ -32,7 +32,7 @@ class EnvoiCertificatScpSaplf extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Certificat SCP & SAPLF',
+            subject: 'Certificat SOCEDIAMN & SFADE',
         );
     }
 

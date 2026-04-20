@@ -40,10 +40,10 @@ Route::controller(AbstractController::class)->group(function () {
     Route::post('abstract', 'abstractSave');
 });
 
-Route::controller(InscriptionController::class)->group(function () {
+/*Route::controller(InscriptionController::class)->group(function () {
     Route::post('save-inscription', 'saveInscription')->middleware('throttle:api');
     Route::post('inscription', 'inscriptionMobile')->middleware('throttle:api');
-});
+});*/
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
