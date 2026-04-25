@@ -219,7 +219,7 @@
 
 <body>
     @php
-        $titre = ucfirst(mb_strtolower($com->titre));
+        $titre = $com->titre;
         $arrayTitre = explode(' ', $titre);
         $taille = strlen($titre);
         $libelleTitre1 = '';
