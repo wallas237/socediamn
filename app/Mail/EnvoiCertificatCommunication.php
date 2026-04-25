@@ -40,11 +40,11 @@ class EnvoiCertificatCommunication extends Mailable
     public function content(): Content
     {
         $com = ComOraleValide::where('numero', $this->id)->first();
-        $communication = DB::table('abstracts')->where('email', $com->email)->first();
+       // $communication = DB::table('abstracts')->where('email', $com->email)->first();
         return new Content(
             view: 'email.communication-certificat',
             with: [
-                'data'=>$communication,
+                'data'=>$com,
                 'com'=>$com,
             ]
         );

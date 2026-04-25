@@ -34,7 +34,17 @@
             position: absolute;
             z-index: 1000;
             width: 100%;
-            top: 32.5%;
+            top: 30%;
+            text-align: center;
+            font-size: 2.2em;
+            font-style: italic;
+        }
+
+        .name2 {
+            position: absolute;
+            z-index: 1000;
+            width: 100%;
+            top: 26%;
             text-align: center;
             font-size: 2.2em;
             font-style: italic;
@@ -58,7 +68,7 @@
             z-index: 1000;
             width: 94.5%;
             text-align: center;
-            top: 46.5%;
+            top: 43.5%;
             font-size: 1.7em;
             margin-left: 1.5%;
             padding-left: 0.5%;
@@ -73,7 +83,7 @@
             z-index: 1000;
             width: 94.5%;
             text-align: center;
-            top: 42.5%;
+            top: 37%;
             font-size: 1.7em;
             font-style: italic;
             padding-left: 0.1%;
@@ -86,7 +96,7 @@
             z-index: 1000;
             width: 93%;
             text-align: left;
-            top: 50%;
+            top: 44.5%;
             font-size: 1.7em;
             margin-left: 1%;
             padding-left: 1%;
@@ -99,7 +109,7 @@
             z-index: 1000;
             width: 94.5%;
             text-align: center;
-            top: 44%;
+            top: 38.5%;
             font-size: 1.5em;
             font-style: italic;
             padding-left: 0.1%;
@@ -113,10 +123,10 @@
             z-index: 1000;
             width: 93%;
             text-align: left;
-            top: 51.2%;
+            top: 46.2%;
             font-size: 1.5em;
             margin-left: 1%;
-            padding-left: 1%;
+            padding-left: 3%;
             font-style: italic;
         }
 
@@ -151,7 +161,7 @@
             z-index: 1000;
             width: 94.5%;
             text-align: center;
-            top: 45.2%;
+            top: 39.5%;
             font-size: 1.3em;
             font-style: italic;
             padding-left: 0.1%;
@@ -165,10 +175,10 @@
             z-index: 1000;
             width: 93%;
             text-align: left;
-            top: 52.5%;
+            top: 47.1%;
             font-size: 1.3em;
             margin-left: 1%;
-            padding-left: 1%;
+            padding-left: 4%;
             font-style: italic;
         }
 
@@ -177,7 +187,7 @@
             z-index: 1000;
             width: 94.5%;
             text-align: center;
-            top: 45.80%;
+            top: 40.3%;
             font-size: 1.2em;
             font-style: italic;
             padding-left: 0.1%;
@@ -191,10 +201,10 @@
             z-index: 1000;
             width: 93%;
             text-align: left;
-            top: 53.25%;
+            top: 47.7%;
             font-size: 1.2em;
             margin-left: 1%;
-            padding-left: 1%;
+            padding-left: 3%;
             font-style: italic;
         }
 
@@ -211,7 +221,7 @@
     @php
         $titre = ucfirst(mb_strtolower($com->titre));
         $arrayTitre = explode(' ', $titre);
-
+        $taille = strlen($titre);
         $libelleTitre1 = '';
         $libelleTitre2 = '';
         $verifyLength1 = '';
@@ -279,7 +289,7 @@
             @endif
         @endif
     @endforeach
-    <h2 class="name">
+    <h2 class="{{ $com->titre <= 82 ? 'name' : 'name2'}}">
         {{ $name }}
     </h2>
     @if (strlen($com->titre) <= 87)
@@ -303,9 +313,9 @@
     @endif
     <div class="bg-certificate">
         @if (strlen($com->titre) <= 88)
-            <img src="assets/images/attestation/congres/communication-orale-min.png" alt="" id="bg">
+            <img src="attestation/communication.png" alt="" id="bg">
         @else
-            <img src="assets/images/attestation/congres/communication-orale-max.png" alt="" id="bg">
+            <img src="attestation/communication2.png" alt="" id="bg">
         @endif
     </div>
 </body>

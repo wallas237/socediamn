@@ -102,15 +102,16 @@ class CertificationController extends Controller
     function orale($id)
     {
         $com = ComOraleValide::where('numero', $id)->first();
-        if ($com->salle >= 1) {
-            return "Nous sommes désolés car vous n'avez pas fait de présentation donc vous ne pouvez pas télécharger l'attestation de communication";
-        }
-        $abstract = Abstracts::where('email', $com->email)->first();
-        $inscription = Inscription::where('email', $com->email)->first();
-        $name = $abstract->name;
-        if (!empty($inscription)) {
-            $name = $inscription->titre . ' ' . mb_strtoupper($inscription->name) . ' ' . $inscription->prenom;
-        }
+        // if ($com->salle >= 1) {
+        //     return "Nous sommes désolés car vous n'avez pas fait de présentation donc vous ne pouvez pas télécharger l'attestation de communication";
+        // }
+        //$abstract = Abstracts::where('email', $com->email)->first();
+        // $inscription = Inscription::where('email', $com->email)->first();
+       // $name = $abstract->name;
+       $name = $com->nom;
+       // if (!empty($inscription)) {
+            $name = /*$inscription->titre . ' ' .*/ mb_strtoupper($com->nom) /*. ' ' . $inscription->prenom*/;
+       // }
         $pdf = PDF::loadView('certificat.certificat-communication', ['name' => $name, 'com' => $com])
             ->setPaper('a4', 'landscape');
         return $pdf->stream();

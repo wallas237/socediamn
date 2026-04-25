@@ -29,24 +29,26 @@
                                 </p>
                                 <p
                                     style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
-                                <h3> {{ $data->civilite . ' ' . $data->name }} </h3>
+                                <h3> {{  $data->nom }} </h3>
                                 </p>
 
                                 <p
                                     style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
-                                    {{ 'Nous avons été honorés de votre présence au 11 ' }}<sup>ème</sup>
-                                    Congrès de la SAPLF(Société Africaine Pneumologie de Langue Française) et au
-                                    5<sup>ème</sup>
-                                    Congrès de la SCP(Société Camerounaise de Pneumologie) qui a eu lieu le <strong>30
-                                        Juillet 2025</strong> à l'Hôtel La Falaise de BONANJO</p>
+                                    {{ 'Nous avons été honorés de votre présence au 5 ' }}<sup>ème</sup>
+                                    Congrès de la SOCEDIAMN(SOCIETE CAMEROUNAISE D’ENDOCRINOLOGIE, DIABÈTE MÉTABOLISME ET NUTRITION) et au
+                                    8<sup>ème</sup>
+                                    Congrès de la SFADE(SOCIÉTÉ FRANCOPHONE AFRICAINE DE DIABÉTOLOGIE ET D’ENDOCRINOLOGIE) qui a eu lieu le <strong>16 au
+                                       18 Avril 2026</strong> à l'Hôtel DJEUGA Palace</p>
                                 <p
                                     style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
                                     {{ "Pour obtenir votre certificat de communication nous vous prions de  cliquer sur le lien ci-dessous." }} <br>
-                                    <a href="https://dashboard.scpneumologie.com/visualiser-certificat-communication/{{ $com->numero }}" download="">Cliquez ici pour récupérer votre certificat</a>
+                                    <a href="https://api.socediamn.org/visualiser-certificat-communication/{{ $com->numero }}" download="">Cliquez ici pour récupérer votre certificat</a>
 
 
 
                                     <br>
+                                     <a href="https://api.socediamn.org/LIVREABSTRACTSOCEDIAMN.pdf" download="">Télécharger le livre des {{ "abstracts" }}</a>
+                                     <br>
                                     {{ "Nos salutations cordiales." }}
                                     <br>
 
@@ -71,7 +73,7 @@
                                     <span class="apple-link"
                                         style="color: #9a9ea6; font-size: 16px; text-align: center;"></span>
                                     <br> <a href=""
-                                        style="text-decoration: underline; color: #9a9ea6; font-size: 16px; text-align: center;">{{ 'SAPLF & SCP' }}</a>.
+                                        style="text-decoration: underline; color: #9a9ea6; font-size: 16px; text-align: center;">{{ 'SOCEDIAMN & SFADE' }}</a>.
                                 </td>
                             </tr>
 

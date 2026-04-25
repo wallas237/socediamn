@@ -92,7 +92,7 @@
                                     <span class="apple-link"
                                         style="color: #9a9ea6; font-size: 16px; text-align: center;"></span>
                                     <br> <a href=""
-                                        style="text-decoration: underline; color: #9a9ea6; font-size: 16px; text-align: center;">{{ 'SAPLF & SCP' }}</a>.
+                                        style="text-decoration: underline; color: #9a9ea6; font-size: 16px; text-align: center;">{{ 'SOCEDIAMN & SFADE' }}</a>.
                                 </td>
                             </tr>
 

@@ -163,11 +163,7 @@
                             @endphp
                             @foreach ($comValide as $v)
                                 <tr>
-
-                                    <th scope="row">{{ $v->nom }}</th>
-                                    <th scope="row">{{ $v->titre }}</th>
-                                    <td>{{ $v->email }}</td>
-                                    <td>
+                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-primary p-2 dropdown-toggle"
                                                 id="dropdownMenuIconButton7" data-bs-toggle="dropdown"
@@ -199,6 +195,10 @@
                                         </div>
                                     </td>
 
+                                    <th scope="row">{{ $v->nom }}</th>
+                                    <th scope="row">{{ $v->titre }}</th>
+                                    <td>{{ $v->email }}</td>
+                                   
 
 
 

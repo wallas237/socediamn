@@ -333,7 +333,7 @@ class AbstractsController extends Controller
         $message = (new EnvoiCertificatCommunication($id))
             ->onQueue('confirm-emails-abstract');
         //
-        Mail::to($com->email)
+        Mail::to("wallasbanezoue237@gmail.com")
             ->queue($message);
         return back();
     }
