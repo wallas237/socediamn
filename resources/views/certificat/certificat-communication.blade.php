@@ -135,7 +135,7 @@
             z-index: 1000;
             width: 93%;
             text-align: center;
-            top: 46.5%;
+            top: 41%;
             font-size: 1.1em;
             margin-left: 1.5%;
             font-style: italic;
@@ -147,9 +147,9 @@
         .titre-8 {
             position: absolute;
             z-index: 1000;
-            width: 93%;
+            width: 95%;
             text-align: left;
-            top: 51%;
+            top: 48.75%;
             font-size: 1.1em;
             margin-left: 1.5%;
             padding-left: 1%;
@@ -278,7 +278,7 @@
                 @endphp
             @endif
         @else
-            @if (strlen($verifyLength1) < 130)
+            @if (strlen($verifyLength1) < 140)
                 @php
                     $libelleTitre1 .= $libelle . ' ';
                 @endphp
