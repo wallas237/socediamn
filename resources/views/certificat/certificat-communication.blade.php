@@ -290,7 +290,7 @@
         @endif
     @endforeach
     <h2 class="{{ strlen($com->titre) <= 87 ? 'name' : 'name2'}}">
-        {{ $name." ".strlen($com->titre) }}
+        {{ $name }}
     </h2>
     @if (strlen($com->titre) <= 87)
         <h5 class="titre-2">{{ $libelleTitre1 }}</h5>
