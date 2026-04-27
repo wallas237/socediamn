@@ -66,7 +66,7 @@
         .titre-2 {
             position: absolute;
             z-index: 1000;
-            width: 94.5%;
+             width: 98.5%;
             text-align: center;
             top: 43.5%;
             font-size: 1.7em;
@@ -81,7 +81,7 @@
         .titre-3 {
             position: absolute;
             z-index: 1000;
-            width: 94.5%;
+            width: 98.5%;
             text-align: center;
             top: 37%;
             font-size: 1.7em;
@@ -94,7 +94,7 @@
         .titre-4 {
             position: absolute;
             z-index: 1000;
-            width: 93%;
+            width: 98.5%;
             text-align: left;
             top: 44.5%;
             font-size: 1.7em;
@@ -107,7 +107,7 @@
         .titre-5 {
             position: absolute;
             z-index: 1000;
-            width: 94.5%;
+             width: 98.5%;
             text-align: center;
             top: 38.5%;
             font-size: 1.5em;
@@ -121,7 +121,7 @@
         .titre-6 {
             position: absolute;
             z-index: 1000;
-            width: 93%;
+            width: 98.5%;
             text-align: left;
             top: 46.2%;
             font-size: 1.5em;
@@ -133,7 +133,7 @@
         .titre-7 {
             position: absolute;
             z-index: 1000;
-            width: 93%;
+            width: 98.5%;
             text-align: center;
             top: 41%;
             font-size: 1.1em;
@@ -147,7 +147,7 @@
         .titre-8 {
             position: absolute;
             z-index: 1000;
-            width: 95%;
+            width: 98.5%;
             text-align: left;
             top: 48.75%;
             font-size: 1.1em;
@@ -159,7 +159,7 @@
         .titre-9 {
             position: absolute;
             z-index: 1000;
-            width: 94.5%;
+            width: 98.5%;
             text-align: center;
             top: 39.5%;
             font-size: 1.3em;
@@ -173,7 +173,7 @@
         .titre-10 {
             position: absolute;
             z-index: 1000;
-            width: 93%;
+            width: 98.5%;
             text-align: left;
             top: 47.1%;
             font-size: 1.3em;
@@ -185,7 +185,7 @@
          .titre-11 {
             position: absolute;
             z-index: 1000;
-            width: 94.5%;
+            width: 98.5%;
             text-align: center;
             top: 40.3%;
             font-size: 1.2em;
@@ -199,7 +199,7 @@
         .titre-12 {
             position: absolute;
             z-index: 1000;
-            width: 93%;
+            width: 98.5%;
             text-align: left;
             top: 47.7%;
             font-size: 1.2em;
@@ -289,8 +289,8 @@
             @endif
         @endif
     @endforeach
-    <h2 class="{{ $com->titre <= 82 ? 'name' : 'name2'}}">
-        {{ $name }}
+    <h2 class="{{ strlen($com->titre) <= 87 ? 'name' : 'name2'}}">
+        {{ $name." ".strlen($com->titre) }}
     </h2>
     @if (strlen($com->titre) <= 87)
         <h5 class="titre-2">{{ $libelleTitre1 }}</h5>
